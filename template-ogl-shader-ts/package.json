@@ -6,16 +6,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc --noemit && vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
     "@types/ogl": "npm:ogl-types@^0.0.102",
     "typescript": "^4.9.4",
-    "vite": "^4.0.4"
+    "vite": "^4.0.4",
+    "vite-plugin-glsl": "^1.1.2"
   },
   "dependencies": {
-    "ssam": "^0.1.1",
-    "vite-plugin-glsl": "^1.1.2"
+    "ssam": "^0.1.1"
   }
 }

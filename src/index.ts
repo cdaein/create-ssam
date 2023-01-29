@@ -29,7 +29,7 @@ import kleur from "kleur";
 const log = console.log;
 
 // const { red, green, yellow, blue, magenta, cyan, white } = kleur;
-const { red, green, yellow, blue, white, bold } = kleur;
+const { red, green, yellow, blue, magenta, white, bold } = kleur;
 
 const cwd = process.cwd();
 
@@ -86,6 +86,19 @@ const templates: Template[] = [
       //   color: yellow,
       //   customCommand: `npm install ssam@latest ogl@latest --prefix TARGET_DIR`,
       // },
+    ],
+  },
+  {
+    name: "three",
+    display: "Three.js",
+    color: magenta,
+    options: [
+      {
+        name: "three-shader-ts",
+        display: "Fullscreen Shader TS",
+        color: blue,
+        customCommand: `npm install three@latest vite-plugin-glsl@latest --prefix TARGET_DIR`,
+      },
     ],
   },
 ];

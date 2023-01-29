@@ -1,7 +1,7 @@
 import { Sketch, WebGLProps, SketchSettings, ssam } from "ssam";
 import { Mesh, Program, Renderer, Triangle } from "ogl";
-import baseVert from "./glsl/base.vert";
-import baseFrag from "./glsl/base.frag";
+import baseVert from "./shaders/base.vert";
+import baseFrag from "./shaders/base.frag";
 
 const sketch = ({ wrap, canvas, width, height, pixelRatio }: WebGLProps) => {
   const renderer = new Renderer({
@@ -36,9 +36,9 @@ const sketch = ({ wrap, canvas, width, height, pixelRatio }: WebGLProps) => {
 
 const settings: SketchSettings = {
   mode: "webgl2",
-  dimensions: [600, 600],
+  // dimensions: [600, 600],
   animate: true,
-  duration: 4_000,
+  duration: 2_000,
   playFps: 60,
   exportFps: 60,
   framesFormat: ["webm"],
