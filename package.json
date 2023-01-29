@@ -1,0 +1,35 @@
+{
+  "name": "create-ssam",
+  "version": "0.1.0",
+  "description": "",
+  "type": "module",
+  "bin": {
+    "create-ssam": "bin/create-ssam.js"
+  },
+  "files": [
+    "index.js",
+    "template-*",
+    "dist",
+    "bin"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "watch": "tsup --watch",
+    "build": "tsc --noemit && tsup ./src/index.ts"
+  },
+  "author": "Daeinc",
+  "license": "MIT",
+  "dependencies": {
+    "cross-spawn": "^7.0.3",
+    "kleur": "^4.1.5",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/cross-spawn": "^6.0.2",
+    "@types/prompts": "^2.4.2",
+    "ogl": "^0.0.103",
+    "ssam": "^0.1.1",
+    "tsup": "^6.5.0",
+    "vite": "^4.0.4"
+  }
+}
