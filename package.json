@@ -1,7 +1,7 @@
 {
   "name": "create-ssam",
   "version": "0.1.0",
-  "description": "",
+  "description": "Quickstart a creative coding sketch with ssam",
   "type": "module",
   "bin": {
     "create-ssam": "bin/create-ssam.js"
@@ -31,5 +31,16 @@
     "ssam": "^0.1.1",
     "tsup": "^6.5.0",
     "vite": "^4.0.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cdaein/create-ssam.git"
+  },
+  "keywords": [
+    "ssam"
+  ],
+  "bugs": {
+    "url": "https://github.com/cdaein/create-ssam/issues"
+  },
+  "homepage": "https://github.com/cdaein/create-ssam#readme"
 }
