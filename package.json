@@ -1,6 +1,6 @@
 {
   "name": "create-ssam",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Quickstart a creative coding sketch with ssam",
   "type": "module",
   "bin": {
