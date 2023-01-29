@@ -80,6 +80,12 @@ const templates: Template[] = [
         color: blue,
         customCommand: `npm install ssam@latest ogl@latest vite-plugin-glsl@latest --prefix TARGET_DIR`,
       },
+      {
+        name: "ogl-cube-ts",
+        display: "Basic Cube Scene TS",
+        color: green,
+        customCommand: `npm install ssam@latest ogl@latest vite-plugin-glsl@latest --prefix TARGET_DIR`,
+      },
       // {
       //   name: "ogl-shader",
       //   display: "Fullscreen Shader JS",
