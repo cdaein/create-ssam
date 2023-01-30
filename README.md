@@ -5,10 +5,16 @@ Quicstart a sketch with [`ssam`](https://github.com/cdaein/ssam).
 ## How to
 
 ```sh
-npm create ssam # or, npm create ssam@latest
+npm create ssam
 ```
 
 Then, follow the prompts.
+
+To update to the latest package,
+
+```sh
+ npm create ssam@latest
+```
 
 ## Templates
 
