@@ -25,11 +25,12 @@ import { fileURLToPath } from "url";
 import spawn from "cross-spawn";
 import prompts from "prompts";
 import kleur from "kleur";
+import figlet from "figlet";
 
 const log = console.log;
 
 // const { red, green, yellow, blue, magenta, cyan, white } = kleur;
-const { red, green, yellow, blue, magenta, white, bold } = kleur;
+const { red, green, yellow, blue, magenta, white, bold, bgGreen } = kleur;
 
 const cwd = process.cwd();
 
@@ -129,7 +130,16 @@ const renameFiles: Record<string, string | undefined> = {
 const defaultTargetDir = "sketch-ssam";
 let targetDir = defaultTargetDir;
 
-log(bold().white(`\nLet's create a new sketch with ssam/쌈.\n`));
+log(
+  `${green(
+    figlet.textSync("create ssam", {
+      font: "Ogre",
+      whitespaceBreak: true,
+    })
+  )}`
+);
+
+log(bold().white(`Let's create a new sketch with ssam/쌈.\n`));
 
 async function init() {
   let response: prompts.Answers<
@@ -315,6 +325,9 @@ async function init() {
       console.log(`  ${pkgManager} run dev`);
       break;
   }
+  console.log(
+    `\nFind the latest updates of Ssam at http://github.com/cdaein/ssam`
+  );
   console.log();
 }
 

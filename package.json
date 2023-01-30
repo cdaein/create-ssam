@@ -21,11 +21,13 @@
   "license": "MIT",
   "dependencies": {
     "cross-spawn": "^7.0.3",
+    "figlet": "^1.5.2",
     "kleur": "^4.1.5",
     "prompts": "^2.4.2"
   },
   "devDependencies": {
     "@types/cross-spawn": "^6.0.2",
+    "@types/figlet": "^1.5.5",
     "@types/prompts": "^2.4.2",
     "ogl": "^0.0.103",
     "ssam": "^0.1.1",
