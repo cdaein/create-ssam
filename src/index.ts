@@ -86,12 +86,6 @@ const templates: Template[] = [
         color: green,
         customCommand: `npm install ssam@latest ogl@latest vite-plugin-glsl@latest --prefix TARGET_DIR`,
       },
-      // {
-      //   name: "ogl-shader",
-      //   display: "Fullscreen Shader JS",
-      //   color: yellow,
-      //   customCommand: `npm install ssam@latest ogl@latest --prefix TARGET_DIR`,
-      // },
     ],
   },
   {
@@ -103,6 +97,12 @@ const templates: Template[] = [
         name: "three-shader-ts",
         display: "Fullscreen Shader TS",
         color: blue,
+        customCommand: `npm install three@latest vite-plugin-glsl@latest --prefix TARGET_DIR`,
+      },
+      {
+        name: "three-shader-js",
+        display: "Fullscreen Shader JS",
+        color: yellow,
         customCommand: `npm install three@latest vite-plugin-glsl@latest --prefix TARGET_DIR`,
       },
     ],

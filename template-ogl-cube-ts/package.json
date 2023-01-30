@@ -1,5 +1,5 @@
 {
-  "name": "template-vanilla-ts",
+  "name": "template-ogl-cube-ts",
   "private": true,
   "version": "0.0.0",
   "main": "./dist/index.js",
