@@ -3,20 +3,12 @@
  * - add CLI flag options (instead of going through prompts)
  * - instead of using custom command, search for all dependency used in src/* and install them
  *
- * -> project name
- *   - use as directory name
- *   - check if directory already exists
- *     - if so, warn and cancel (TODO: can it warn and go back?)
- *     - if not, create a new directory
- * -> language
- *   - TS or JS
- * -> template
- *   - choose one: vanilla, OGL shader
- *   - choose option:
  * -> more dependency
- *   - choose multiple
+ *   - choose multiple common ones
  *     - @thi.ng/random
- *     -
+ *     - @thi.ng/vector
+ *     - mouse/keyboard events
+ *     - image loader
  */
 
 import fs from "fs";
@@ -98,13 +90,13 @@ const templates: Template[] = [
         name: "three-shader-ts",
         display: "Fullscreen Shader TS",
         color: blue,
-        customCommand: `npm install three@latest vite-plugin-glsl@latest --prefix TARGET_DIR`,
+        customCommand: `npm install ssam@latest three@latest vite-plugin-glsl@latest --prefix TARGET_DIR`,
       },
       {
         name: "three-shader-js",
         display: "Fullscreen Shader JS",
         color: yellow,
-        customCommand: `npm install three@latest vite-plugin-glsl@latest --prefix TARGET_DIR`,
+        customCommand: `npm install ssam@latest three@latest vite-plugin-glsl@latest --prefix TARGET_DIR`,
       },
     ],
   },
@@ -265,6 +257,7 @@ async function init() {
     }
   };
 
+  // TODO: do not copy node_modules/*, package-lock.json,
   const files = fs.readdirSync(templateDir);
   for (const file of files.filter((f) => f !== "package.json")) {
     write(file);

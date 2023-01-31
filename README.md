@@ -1,6 +1,6 @@
 # create-ssam
 
-Quicstart a sketch with [`ssam`](https://github.com/cdaein/ssam).
+Quickstart a sketch with [`ssam`](https://github.com/cdaein/ssam).
 
 ## How to
 
@@ -9,6 +9,8 @@ Quicstart a sketch with [`ssam`](https://github.com/cdaein/ssam).
 ```
 
 Then, follow the prompts.
+
+It will set up all the necessary files and Vite bundler so you can go straight into creative coding.
 
 ## Templates
 
