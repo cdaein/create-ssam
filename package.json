@@ -28,9 +28,12 @@
   "devDependencies": {
     "@types/cross-spawn": "^6.0.2",
     "@types/figlet": "^1.5.5",
+    "@types/ogl": "npm:ogl-types@^0.0.102",
     "@types/prompts": "^2.4.2",
+    "@types/three": "^0.149.0",
     "ogl": "^0.0.103",
-    "ssam": "^0.1.1",
+    "ssam": "^0.3.0",
+    "three": "^0.149.0",
     "tsup": "^6.5.0",
     "vite": "^4.0.4"
   },

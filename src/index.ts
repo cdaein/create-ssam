@@ -40,6 +40,10 @@ type TemplateOption = {
   customCommand?: string;
 };
 
+const ssamPkg = `ssam@latest`;
+const oglPkg = `ogl@latest`;
+const viteglslPkg = `vite-plugin-glsl@latest`;
+
 // option name follows the format "template-" + name
 const templates: Template[] = [
   {

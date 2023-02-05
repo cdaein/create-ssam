@@ -1,9 +1,15 @@
 import { Sketch, WebGLProps, SketchSettings, ssam } from "ssam";
-import { Mesh, Program, Renderer, Triangle } from "ogl";
+import { Mesh, Program, Renderer, Triangle, Vec2 } from "ogl";
 import baseVert from "./shaders/base.vert";
 import baseFrag from "./shaders/base.frag";
 
 const sketch = ({ wrap, canvas, width, height, pixelRatio }: WebGLProps) => {
+  // keep this for hot-reload
+  if (import.meta.hot) {
+    import.meta.hot.dispose(() => wrap.dispose());
+    import.meta.hot.accept(() => wrap.hotReload());
+  }
+
   const renderer = new Renderer({
     canvas,
     width,
@@ -18,6 +24,7 @@ const sketch = ({ wrap, canvas, width, height, pixelRatio }: WebGLProps) => {
     vertex: baseVert,
     fragment: baseFrag,
     uniforms: {
+      uResolution: { value: new Vec2(width, height) },
       uTime: { value: 0 },
     },
   });
@@ -30,6 +37,7 @@ const sketch = ({ wrap, canvas, width, height, pixelRatio }: WebGLProps) => {
   };
 
   wrap.resize = ({ width, height }: WebGLProps) => {
+    program.uniforms.uResolution.value.set(width, height);
     renderer.setSize(width, height);
   };
 };
@@ -39,7 +47,7 @@ const settings: SketchSettings = {
   // dimensions: [600, 600],
   pixelRatio: window.devicePixelRatio,
   animate: true,
-  duration: 2_000,
+  duration: 6_000,
   playFps: 60,
   exportFps: 60,
   framesFormat: ["webm"],
