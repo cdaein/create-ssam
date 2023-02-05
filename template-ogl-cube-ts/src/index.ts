@@ -14,6 +14,11 @@ import baseVert from "./shaders/base.vert";
 import baseFrag from "./shaders/base.frag";
 
 const sketch = ({ wrap, canvas, width, height, pixelRatio }: WebGLProps) => {
+  if (import.meta.hot) {
+    import.meta.hot.dispose(() => wrap.dispose());
+    import.meta.hot.accept(() => wrap.hotReload());
+  }
+
   const renderer = new Renderer({
     canvas,
     width,
@@ -62,7 +67,7 @@ const settings: SketchSettings = {
   // dimensions: [600, 600],
   pixelRatio: window.devicePixelRatio,
   animate: true,
-  duration: 2_000,
+  duration: 6_000,
   playFps: 60,
   exportFps: 60,
   framesFormat: ["webm"],

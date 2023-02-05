@@ -1,6 +1,11 @@
 import { ssam } from "ssam";
 
 const sketch = ({ wrap, context: ctx }) => {
+  if (import.meta.hot) {
+    import.meta.hot.dispose(() => wrap.dispose());
+    import.meta.hot.accept(() => wrap.hotReload());
+  }
+
   wrap.render = ({ width, height }) => {
     ctx.fillStyle = `gray`;
     ctx.fillRect(0, 0, width, height);

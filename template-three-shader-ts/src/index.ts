@@ -5,12 +5,18 @@ import {
   PlaneGeometry,
   Scene,
   ShaderMaterial,
+  Vector2,
   WebGLRenderer,
 } from "three";
 import baseVert from "./shaders/base.vert";
 import baseFrag from "./shaders/base.frag";
 
 const sketch = ({ wrap, canvas, width, height, pixelRatio }: WebGLProps) => {
+  if (import.meta.hot) {
+    import.meta.hot.dispose(() => wrap.dispose());
+    import.meta.hot.accept(() => wrap.hotReload());
+  }
+
   const renderer = new WebGLRenderer({ canvas });
   renderer.setSize(width, height);
   renderer.setPixelRatio(pixelRatio);
@@ -21,6 +27,7 @@ const sketch = ({ wrap, canvas, width, height, pixelRatio }: WebGLProps) => {
 
   const geometry = new PlaneGeometry(2, 2);
   const uniforms = {
+    resolution: { value: new Vector2(width, height) },
     time: { value: 0.0 },
   };
   const material = new ShaderMaterial({
@@ -37,6 +44,7 @@ const sketch = ({ wrap, canvas, width, height, pixelRatio }: WebGLProps) => {
   };
 
   wrap.resize = ({ width, height }: WebGLProps) => {
+    uniforms["resolution"].value.set(width, height);
     renderer.setSize(width, height);
   };
 };
@@ -46,7 +54,7 @@ const settings: SketchSettings = {
   // dimensions: [600, 600],
   pixelRatio: window.devicePixelRatio,
   animate: true,
-  duration: 2_000,
+  duration: 6_000,
   playFps: 60,
   exportFps: 60,
   framesFormat: ["webm"],

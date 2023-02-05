@@ -4,7 +4,6 @@ import baseVert from "./shaders/base.vert";
 import baseFrag from "./shaders/base.frag";
 
 const sketch = ({ wrap, canvas, width, height, pixelRatio }: WebGLProps) => {
-  // keep this for hot-reload
   if (import.meta.hot) {
     import.meta.hot.dispose(() => wrap.dispose());
     import.meta.hot.accept(() => wrap.hotReload());
