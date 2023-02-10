@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@types/node": "^18.11.18",
+    "kleur": "^4.1.5",
     "typescript": "^4.9.4",
     "vite": "^4.0.4"
   },

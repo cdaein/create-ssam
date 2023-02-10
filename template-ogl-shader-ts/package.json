@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@types/node": "^18.11.18",
     "@types/ogl": "npm:ogl-types@^0.0.102",
+    "kleur": "^4.1.5",
     "typescript": "^4.9.4",
     "vite": "^4.0.4",
     "vite-plugin-glsl": "^1.1.2"
