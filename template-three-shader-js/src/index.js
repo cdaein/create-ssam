@@ -47,6 +47,11 @@ const sketch = ({ wrap, canvas, width, height, pixelRatio }) => {
     uniforms["resolution"].value.set(width, height);
     renderer.setSize(width, height);
   };
+
+  wrap.unload = () => {
+    renderer.dispose();
+    renderer.forceContextLoss();
+  };
 };
 
 const settings = {
