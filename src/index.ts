@@ -37,7 +37,6 @@ type TemplateOption = {
   name: string;
   display: string;
   color: kleur.Color;
-  customCommand?: string;
   customCommands?: string[];
 };
 
@@ -65,7 +64,7 @@ const templates: Template[] = [
         name: "vanilla",
         display: "JavaScript",
         color: yellow,
-        customCommand: `npm install ssam@latest --prefix TARGET_DIR`,
+        customCommands: [`npm install ssam@latest --prefix TARGET_DIR`],
       },
     ],
   },
@@ -83,21 +82,17 @@ const templates: Template[] = [
           `npm install -D @types/node @types/ogl@npm:ogl-types vite-plugin-glsl@latest --prefix TARGET_DIR`,
         ],
       },
-      // {
-      //   // TODO: move ogl-types to devDep (can't use && here)
-      //   // FIX: git submodule add to a different directory
-      //   //      can't cd with node. will need to use process.chdir("dir")
-      //   name: "ogl-shader-lygia-ts",
-      //   display: "Fullscreen Shader TS (Lygia + git)",
-      //   color: blue,
-      //   customCommands: [
-      //     `git init TARGET_DIR`,
-      //     `cd TARGET_DIR`,
-      //     `git submodule add https://github.com/patriciogonzalezvivo/lygia.git`,
-      //     // `cd ..`,
-      //     `npm install ssam@latest ogl@latest vite-plugin-glsl@latest --prefix TARGET_DIR`,
-      //   ],
-      // },
+      {
+        name: "ogl-shader-lygia-ts",
+        display: "Fullscreen Shader TS (Lygia + git)",
+        color: blue,
+        customCommands: [
+          `git init`,
+          `git submodule add https://github.com/patriciogonzalezvivo/lygia.git`,
+          `npm install ssam@latest ogl@latest --prefix TARGET_DIR`,
+          `npm install -D @types/node @types/ogl@npm:ogl-types vite-plugin-glsl@latest --prefix TARGET_DIR`,
+        ],
+      },
       {
         name: "ogl-cube-ts",
         display: "Basic Cube Scene TS",
@@ -124,10 +119,35 @@ const templates: Template[] = [
         ],
       },
       {
+        name: "three-shader-lygia-ts",
+        display: "Fullscreen Shader TS (Lygia + git)",
+        color: blue,
+        customCommands: [
+          `git init`,
+          `git submodule add https://github.com/patriciogonzalezvivo/lygia.git`,
+          `npm install ssam@latest three@latest --prefix TARGET_DIR`,
+          `npm install -D @types/node @types/three vite-plugin-glsl@latest --prefix TARGET_DIR`,
+        ],
+      },
+      {
         name: "three-shader-js",
         display: "Fullscreen Shader JS",
         color: yellow,
-        customCommand: `npm install ssam@latest three@latest vite-plugin-glsl@latest --prefix TARGET_DIR`,
+        customCommands: [
+          `npm install ssam@latest three@latest --prefix TARGET_DIR`,
+          `npm install -D vite-plugin-glsl@latest --prefix TARGET_DIR`,
+        ],
+      },
+      {
+        name: "three-shader-lygia-js",
+        display: "Fullscreen Shader JS (Lygia + git)",
+        color: yellow,
+        customCommands: [
+          `git init`,
+          `git submodule add https://github.com/patriciogonzalezvivo/lygia.git`,
+          `npm install ssam@latest three@latest --prefix TARGET_DIR`,
+          `npm install -D vite-plugin-glsl@latest --prefix TARGET_DIR`,
+        ],
       },
     ],
   },
@@ -302,10 +322,10 @@ async function init() {
 
   write("package.json", JSON.stringify(pkg, null, 2));
 
-  const { customCommand, customCommands } =
+  const { customCommands } =
     templates.flatMap((t) => t.options).find((o) => o.name === option) ?? {};
 
-  // TODO
+  // REVIEW: yarn install test?
   if (customCommands) {
     customCommands.forEach((customCommand) => {
       const fullCustomCommand = customCommand
@@ -330,39 +350,10 @@ async function init() {
       const [command, ...args] = fullCustomCommand.split(" ");
       const { status } = spawn.sync(command, args, {
         stdio: "inherit",
+        cwd: command.startsWith(`git`) ? targetDir : `.`,
       });
-      // console.log(status);
       // process.exit(status ?? 0);
     });
-  }
-
-  // REVIEW: yarn install test?
-  if (customCommand) {
-    const fullCustomCommand = customCommand
-      .replace("TARGET_DIR", targetDir)
-      .replace(/^npm create/, `${pkgManager} create`)
-      .replace(/^npm install/, `${pkgManager} install`)
-      // Only Yarn 1.x doesn't support `@version` in the `create` command
-      .replace("@latest", () => (isYarn1 ? "" : "@latest"))
-      .replace(/^npm exec/, () => {
-        // Prefer `pnpm dlx` or `yarn dlx`
-        if (pkgManager === "pnpm") {
-          return "pnpm dlx";
-        }
-        if (pkgManager === "yarn" && !isYarn1) {
-          return "yarn dlx";
-        }
-        // Use `npm exec` in all other cases,
-        // including Yarn 1.x and other custom npm clients.
-        return "npm exec";
-      });
-
-    const [command, ...args] = fullCustomCommand.split(" ");
-    const { status } = spawn.sync(command, args, {
-      stdio: "inherit",
-    });
-    console.log(status);
-    // process.exit(status ?? 0);
   }
 
   console.log(`\nDone. Now run:\n`);
