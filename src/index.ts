@@ -84,11 +84,10 @@ const templates: Template[] = [
       },
       {
         name: "ogl-shader-lygia-ts",
-        display: "Fullscreen Shader TS (Lygia + git)",
+        display: "Fullscreen Shader TS with Lygia",
         color: blue,
         customCommands: [
-          `git init`,
-          `git submodule add https://github.com/patriciogonzalezvivo/lygia.git`,
+          `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git --recurse-submodules`,
           `npm install ssam@latest ogl@latest --prefix TARGET_DIR`,
           `npm install -D @types/node @types/ogl@npm:ogl-types vite-plugin-glsl@latest --prefix TARGET_DIR`,
         ],
@@ -120,11 +119,10 @@ const templates: Template[] = [
       },
       {
         name: "three-shader-lygia-ts",
-        display: "Fullscreen Shader TS (Lygia + git)",
+        display: "Fullscreen Shader TS with Lygia",
         color: blue,
         customCommands: [
-          `git init`,
-          `git submodule add https://github.com/patriciogonzalezvivo/lygia.git`,
+          `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git --recurse-submodules`,
           `npm install ssam@latest three@latest --prefix TARGET_DIR`,
           `npm install -D @types/node @types/three vite-plugin-glsl@latest --prefix TARGET_DIR`,
         ],
@@ -140,11 +138,10 @@ const templates: Template[] = [
       },
       {
         name: "three-shader-lygia-js",
-        display: "Fullscreen Shader JS (Lygia + git)",
+        display: "Fullscreen Shader JS with Lygia",
         color: yellow,
         customCommands: [
-          `git init`,
-          `git submodule add https://github.com/patriciogonzalezvivo/lygia.git`,
+          `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git --recurse-submodules`,
           `npm install ssam@latest three@latest --prefix TARGET_DIR`,
           `npm install -D vite-plugin-glsl@latest --prefix TARGET_DIR`,
         ],
