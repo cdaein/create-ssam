@@ -1,4 +1,5 @@
-import { Sketch, WebGLProps, SketchSettings, ssam } from "ssam";
+import { ssam } from "ssam";
+import type { Sketch, WebGLProps, SketchSettings } from "ssam";
 import { Mesh, Program, Renderer, Triangle, Vec2 } from "ogl";
 import baseVert from "./shaders/base.vert";
 import baseFrag from "./shaders/base.frag";

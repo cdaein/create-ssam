@@ -1,4 +1,5 @@
-import { Sketch, WebGLProps, SketchSettings, ssam } from "ssam";
+import { ssam } from "ssam";
+import type { Sketch, WebGLProps, SketchSettings } from "ssam";
 import {
   Box,
   Camera,

@@ -1,4 +1,5 @@
-import { Sketch, SketchProps, SketchSettings, ssam } from "ssam";
+import { ssam } from "ssam";
+import type { Sketch, SketchProps, SketchSettings } from "ssam";
 
 const sketch = ({ wrap, context: ctx }: SketchProps) => {
   if (import.meta.hot) {

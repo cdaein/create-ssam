@@ -1,4 +1,5 @@
-import { Sketch, SketchSettings, ssam, WebGLProps } from "ssam";
+import { ssam } from "ssam";
+import type { Sketch, WebGLProps, SketchSettings } from "ssam";
 import {
   Mesh,
   OrthographicCamera,
