@@ -44,7 +44,7 @@ const sketch = ({ wrap, canvas, width, height, pixelRatio }: WebGLProps) => {
 
 const settings: SketchSettings = {
   mode: "webgl2",
-  // dimensions: [600, 600],
+  // dimensions: [800, 800],
   pixelRatio: window.devicePixelRatio,
   animate: true,
   duration: 6_000,

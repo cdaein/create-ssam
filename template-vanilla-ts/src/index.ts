@@ -19,7 +19,7 @@ const sketch = ({ wrap, context: ctx }: SketchProps) => {
 
 const settings: SketchSettings = {
   mode: "2d",
-  dimensions: [600, 600],
+  dimensions: [800, 800],
   pixelRatio: window.devicePixelRatio,
   animate: true,
   duration: 4_000,
