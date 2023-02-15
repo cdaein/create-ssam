@@ -57,14 +57,17 @@ const templates: Template[] = [
         color: blue,
         customCommands: [
           `npm install ssam@latest --prefix TARGET_DIR`,
-          `npm install -D @types/node --prefix TARGET_DIR`,
+          `npm install -D @types/node vite-plugin-ssam-git --prefix TARGET_DIR`,
         ],
       },
       {
         name: "vanilla",
         display: "JavaScript",
         color: yellow,
-        customCommands: [`npm install ssam@latest --prefix TARGET_DIR`],
+        customCommands: [
+          `npm install ssam@latest --prefix TARGET_DIR`,
+          `npm install -D vite-plugin-ssam-git --prefix TARGET_DIR`,
+        ],
       },
     ],
   },
@@ -79,7 +82,7 @@ const templates: Template[] = [
         color: blue,
         customCommands: [
           `npm install ssam@latest ogl@latest --prefix TARGET_DIR`,
-          `npm install -D @types/node @types/ogl@npm:ogl-types vite-plugin-glsl@latest --prefix TARGET_DIR`,
+          `npm install -D @types/node @types/ogl@npm:ogl-types vite-plugin-glsl@latest vite-plugin-ssam-git --prefix TARGET_DIR`,
         ],
       },
       {
@@ -87,9 +90,9 @@ const templates: Template[] = [
         display: "Fullscreen Shader TS with Lygia",
         color: blue,
         customCommands: [
-          `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git --recurse-submodules`,
+          `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
           `npm install ssam@latest ogl@latest --prefix TARGET_DIR`,
-          `npm install -D @types/node @types/ogl@npm:ogl-types vite-plugin-glsl@latest --prefix TARGET_DIR`,
+          `npm install -D @types/node @types/ogl@npm:ogl-types vite-plugin-glsl@latest vite-plugin-ssam-git --prefix TARGET_DIR`,
         ],
       },
       {
@@ -98,7 +101,7 @@ const templates: Template[] = [
         color: green,
         customCommands: [
           `npm install ssam@latest ogl@latest --prefix TARGET_DIR`,
-          `npm install -D @types/node @types/ogl@npm:ogl-types vite-plugin-glsl@latest --prefix TARGET_DIR`,
+          `npm install -D @types/node @types/ogl@npm:ogl-types vite-plugin-glsl@latest vite-plugin-ssam-git --prefix TARGET_DIR`,
         ],
       },
     ],
@@ -114,7 +117,7 @@ const templates: Template[] = [
         color: blue,
         customCommands: [
           `npm install ssam@latest three@latest --prefix TARGET_DIR`,
-          `npm install -D @types/node @types/three vite-plugin-glsl@latest --prefix TARGET_DIR`,
+          `npm install -D @types/node @types/three vite-plugin-glsl@latest vite-plugin-ssam-git --prefix TARGET_DIR`,
         ],
       },
       {
@@ -122,9 +125,9 @@ const templates: Template[] = [
         display: "Fullscreen Shader TS with Lygia",
         color: blue,
         customCommands: [
-          `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git --recurse-submodules`,
+          `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
           `npm install ssam@latest three@latest --prefix TARGET_DIR`,
-          `npm install -D @types/node @types/three vite-plugin-glsl@latest --prefix TARGET_DIR`,
+          `npm install -D @types/node @types/three vite-plugin-glsl@latest vite-plugin-ssam-git --prefix TARGET_DIR`,
         ],
       },
       {
@@ -133,7 +136,7 @@ const templates: Template[] = [
         color: yellow,
         customCommands: [
           `npm install ssam@latest three@latest --prefix TARGET_DIR`,
-          `npm install -D vite-plugin-glsl@latest --prefix TARGET_DIR`,
+          `npm install -D vite-plugin-glsl@latest vite-plugin-ssam-git --prefix TARGET_DIR`,
         ],
       },
       {
@@ -141,9 +144,9 @@ const templates: Template[] = [
         display: "Fullscreen Shader JS with Lygia",
         color: yellow,
         customCommands: [
-          `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git --recurse-submodules`,
+          `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
           `npm install ssam@latest three@latest --prefix TARGET_DIR`,
-          `npm install -D vite-plugin-glsl@latest --prefix TARGET_DIR`,
+          `npm install -D vite-plugin-glsl@latest vite-plugin-ssam-git --prefix TARGET_DIR`,
         ],
       },
     ],
