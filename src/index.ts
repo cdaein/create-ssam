@@ -41,8 +41,9 @@ type TemplateOption = {
 };
 
 const ssamPkg = `ssam@latest`;
-const oglPkg = `ogl@latest`;
-const viteglslPkg = `vite-plugin-glsl@latest`;
+const oglPkg = `ogl@0.0.110`;
+const viteGlslPkg = `vite-plugin-glsl@1.1.2`;
+const threePkg = `three`;
 
 // option name follows the format "template-" + name
 const templates: Template[] = [
@@ -81,8 +82,8 @@ const templates: Template[] = [
         display: "Fullscreen Shader TS",
         color: blue,
         customCommands: [
-          `npm install ssam@latest ogl@latest --prefix TARGET_DIR`,
-          `npm install -D @types/node @types/ogl@npm:ogl-types vite-plugin-glsl@latest vite-plugin-ssam-git --prefix TARGET_DIR`,
+          `npm install ssam@latest ${oglPkg} --prefix TARGET_DIR`,
+          `npm install -D @types/node @types/ogl@npm:ogl-types ${viteGlslPkg} vite-plugin-ssam-git --prefix TARGET_DIR`,
         ],
       },
       {
@@ -91,8 +92,8 @@ const templates: Template[] = [
         color: blue,
         customCommands: [
           `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
-          `npm install ssam@latest ogl@latest --prefix TARGET_DIR`,
-          `npm install -D @types/node @types/ogl@npm:ogl-types vite-plugin-glsl@latest vite-plugin-ssam-git --prefix TARGET_DIR`,
+          `npm install ssam@latest ${oglPkg} --prefix TARGET_DIR`,
+          `npm install -D @types/node @types/ogl@npm:ogl-types ${viteGlslPkg} vite-plugin-ssam-git --prefix TARGET_DIR`,
         ],
       },
       {
@@ -100,8 +101,8 @@ const templates: Template[] = [
         display: "Basic Cube Scene TS",
         color: green,
         customCommands: [
-          `npm install ssam@latest ogl@latest --prefix TARGET_DIR`,
-          `npm install -D @types/node @types/ogl@npm:ogl-types vite-plugin-glsl@latest vite-plugin-ssam-git --prefix TARGET_DIR`,
+          `npm install ssam@latest ${oglPkg} --prefix TARGET_DIR`,
+          `npm install -D @types/node @types/ogl@npm:ogl-types ${viteGlslPkg} vite-plugin-ssam-git --prefix TARGET_DIR`,
         ],
       },
     ],
@@ -116,8 +117,8 @@ const templates: Template[] = [
         display: "Fullscreen Shader TS",
         color: blue,
         customCommands: [
-          `npm install ssam@latest three@latest --prefix TARGET_DIR`,
-          `npm install -D @types/node @types/three vite-plugin-glsl@latest vite-plugin-ssam-git --prefix TARGET_DIR`,
+          `npm install ssam@latest ${threePkg} --prefix TARGET_DIR`,
+          `npm install -D @types/node @types/three ${viteGlslPkg} vite-plugin-ssam-git --prefix TARGET_DIR`,
         ],
       },
       {
@@ -126,8 +127,8 @@ const templates: Template[] = [
         color: blue,
         customCommands: [
           `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
-          `npm install ssam@latest three@latest --prefix TARGET_DIR`,
-          `npm install -D @types/node @types/three vite-plugin-glsl@latest vite-plugin-ssam-git --prefix TARGET_DIR`,
+          `npm install ssam@latest ${threePkg} --prefix TARGET_DIR`,
+          `npm install -D @types/node @types/three ${viteGlslPkg} vite-plugin-ssam-git --prefix TARGET_DIR`,
         ],
       },
       {
@@ -135,8 +136,8 @@ const templates: Template[] = [
         display: "Fullscreen Shader JS",
         color: yellow,
         customCommands: [
-          `npm install ssam@latest three@latest --prefix TARGET_DIR`,
-          `npm install -D vite-plugin-glsl@latest vite-plugin-ssam-git --prefix TARGET_DIR`,
+          `npm install ssam@latest ${threePkg} --prefix TARGET_DIR`,
+          `npm install -D ${viteGlslPkg} vite-plugin-ssam-git --prefix TARGET_DIR`,
         ],
       },
       {
@@ -145,8 +146,8 @@ const templates: Template[] = [
         color: yellow,
         customCommands: [
           `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
-          `npm install ssam@latest three@latest --prefix TARGET_DIR`,
-          `npm install -D vite-plugin-glsl@latest vite-plugin-ssam-git --prefix TARGET_DIR`,
+          `npm install ssam@latest ${threePkg} --prefix TARGET_DIR`,
+          `npm install -D ${viteGlslPkg} vite-plugin-ssam-git --prefix TARGET_DIR`,
         ],
       },
     ],
