@@ -7,7 +7,6 @@
     "create-ssam": "bin/create-ssam.js"
   },
   "files": [
-    "index.js",
     "template-*",
     "dist",
     "bin"
