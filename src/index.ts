@@ -3,7 +3,7 @@
  * - add CLI flag options (instead of going through prompts)
  * - instead of using custom command, search for all dependency used in src/* and install them
  *
- * -> more dependency
+ * -> more options
  *   - choose multiple common ones
  *     - @thi.ng/random
  *     - @thi.ng/vector
@@ -40,7 +40,8 @@ type TemplateOption = {
   customCommands?: string[];
 };
 
-const ssamPkg = `ssam@latest`;
+const commonPkgs = `ssam`;
+const ssamPluginPkgs = `vite-plugin-ssam-git vite-plugin-ssam-timelapse`;
 const oglPkg = `ogl@0.0.110`;
 const viteGlslPkg = `vite-plugin-glsl@1.1.2`;
 const threePkg = `three`;
@@ -58,7 +59,7 @@ const templates: Template[] = [
         color: blue,
         customCommands: [
           `npm install ssam@latest --prefix TARGET_DIR`,
-          `npm install -D @types/node vite-plugin-ssam-git --prefix TARGET_DIR`,
+          `npm install -D @types/node ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
       {
@@ -67,7 +68,7 @@ const templates: Template[] = [
         color: yellow,
         customCommands: [
           `npm install ssam@latest --prefix TARGET_DIR`,
-          `npm install -D vite-plugin-ssam-git --prefix TARGET_DIR`,
+          `npm install -D ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
     ],
@@ -83,7 +84,7 @@ const templates: Template[] = [
         color: blue,
         customCommands: [
           `npm install ssam@latest ${oglPkg} --prefix TARGET_DIR`,
-          `npm install -D @types/node @types/ogl@npm:ogl-types ${viteGlslPkg} vite-plugin-ssam-git --prefix TARGET_DIR`,
+          `npm install -D @types/node @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
       {
@@ -93,7 +94,7 @@ const templates: Template[] = [
         customCommands: [
           `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
           `npm install ssam@latest ${oglPkg} --prefix TARGET_DIR`,
-          `npm install -D @types/node @types/ogl@npm:ogl-types ${viteGlslPkg} vite-plugin-ssam-git --prefix TARGET_DIR`,
+          `npm install -D @types/node @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
       {
@@ -102,7 +103,7 @@ const templates: Template[] = [
         color: green,
         customCommands: [
           `npm install ssam@latest ${oglPkg} --prefix TARGET_DIR`,
-          `npm install -D @types/node @types/ogl@npm:ogl-types ${viteGlslPkg} vite-plugin-ssam-git --prefix TARGET_DIR`,
+          `npm install -D @types/node @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
     ],
@@ -118,7 +119,7 @@ const templates: Template[] = [
         color: blue,
         customCommands: [
           `npm install ssam@latest ${threePkg} --prefix TARGET_DIR`,
-          `npm install -D @types/node @types/three ${viteGlslPkg} vite-plugin-ssam-git --prefix TARGET_DIR`,
+          `npm install -D @types/node @types/three ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
       {
@@ -128,7 +129,7 @@ const templates: Template[] = [
         customCommands: [
           `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
           `npm install ssam@latest ${threePkg} --prefix TARGET_DIR`,
-          `npm install -D @types/node @types/three ${viteGlslPkg} vite-plugin-ssam-git --prefix TARGET_DIR`,
+          `npm install -D @types/node @types/three ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
       {
@@ -137,7 +138,7 @@ const templates: Template[] = [
         color: yellow,
         customCommands: [
           `npm install ssam@latest ${threePkg} --prefix TARGET_DIR`,
-          `npm install -D ${viteGlslPkg} vite-plugin-ssam-git --prefix TARGET_DIR`,
+          `npm install -D ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
       {
@@ -147,7 +148,7 @@ const templates: Template[] = [
         customCommands: [
           `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
           `npm install ssam@latest ${threePkg} --prefix TARGET_DIR`,
-          `npm install -D ${viteGlslPkg} vite-plugin-ssam-git --prefix TARGET_DIR`,
+          `npm install -D ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
     ],
