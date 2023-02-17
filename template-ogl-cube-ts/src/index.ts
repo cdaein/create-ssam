@@ -66,6 +66,10 @@ const sketch = ({ wrap, canvas, width, height, pixelRatio }: WebGLProps) => {
     renderer.setSize(width, height);
     camera.perspective({ aspect: width / height });
   };
+
+  wrap.unload = () => {
+    gl.getExtension("WEBGL_lose_context")?.loseContext();
+  };
 };
 
 const settings: SketchSettings = {
