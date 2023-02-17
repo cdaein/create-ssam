@@ -1,10 +1,15 @@
 import { ssam } from "ssam";
 import type { Sketch, SketchProps, SketchSettings } from "ssam";
 
-const sketch = ({ wrap, context: ctx }: SketchProps) => {
+const sketch = ({ wrap, canvas, context: ctx }: SketchProps) => {
   if (import.meta.hot) {
     import.meta.hot.dispose(() => wrap.dispose());
     import.meta.hot.accept(() => wrap.hotReload());
+    import.meta.hot.on("ssam:timelapse-changed", () => {
+      import.meta.hot?.send("ssam:timelapse-newframe", {
+        image: canvas.toDataURL(),
+      });
+    });
   }
 
   wrap.render = ({ width, height }: SketchProps) => {
