@@ -9,6 +9,9 @@
  *     - @thi.ng/vector
  *     - mouse/keyboard events
  *     - image loader
+ *
+ * TODO:
+ * - copy the same single _gitignore from root
  */
 
 import fs from "fs";
