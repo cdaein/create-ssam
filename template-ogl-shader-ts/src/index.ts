@@ -45,10 +45,6 @@ const sketch = ({ wrap, canvas, width, height, pixelRatio }: WebGLProps) => {
     program.uniforms.uResolution.value.set(width, height);
     renderer.setSize(width, height);
   };
-
-  wrap.unload = () => {
-    gl.getExtension("WEBGL_lose_context")?.loseContext();
-  };
 };
 
 const settings: SketchSettings = {
