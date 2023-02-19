@@ -36,6 +36,7 @@
     "tsup": "^6.5.0",
     "vite": "^4.0.4",
     "vite-plugin-glsl": "^1.1.2",
+    "vite-plugin-ssam-ffmpeg": "^0.0.3",
     "vite-plugin-ssam-git": "^0.0.2",
     "vite-plugin-ssam-timelapse": "^0.0.1"
   },

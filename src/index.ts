@@ -44,7 +44,7 @@ type TemplateOption = {
 };
 
 const commonPkgs = `ssam`;
-const ssamPluginPkgs = `vite-plugin-ssam-git vite-plugin-ssam-timelapse`;
+const ssamPluginPkgs = `vite-plugin-ssam-git vite-plugin-ssam-ffmpeg vite-plugin-ssam-timelapse`;
 const oglPkg = `ogl@0.0.110`;
 const viteGlslPkg = `vite-plugin-glsl@1.1.2`;
 const threePkg = `three`;
