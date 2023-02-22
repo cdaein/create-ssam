@@ -62,7 +62,7 @@ const templates: Template[] = [
         color: blue,
         customCommands: [
           `npm install ssam@latest --prefix TARGET_DIR`,
-          `npm install -D @types/node ${ssamPluginPkgs} --prefix TARGET_DIR`,
+          `npm install -D ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
       {
@@ -87,7 +87,7 @@ const templates: Template[] = [
         color: blue,
         customCommands: [
           `npm install ssam@latest ${oglPkg} --prefix TARGET_DIR`,
-          `npm install -D @types/node @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+          `npm install -D @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
       {
@@ -97,7 +97,7 @@ const templates: Template[] = [
         customCommands: [
           `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
           `npm install ssam@latest ${oglPkg} --prefix TARGET_DIR`,
-          `npm install -D @types/node @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+          `npm install -D @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
       {
@@ -106,7 +106,7 @@ const templates: Template[] = [
         color: green,
         customCommands: [
           `npm install ssam@latest ${oglPkg} --prefix TARGET_DIR`,
-          `npm install -D @types/node @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+          `npm install -D @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
     ],
@@ -122,7 +122,7 @@ const templates: Template[] = [
         color: blue,
         customCommands: [
           `npm install ssam@latest ${threePkg} --prefix TARGET_DIR`,
-          `npm install -D @types/node @types/three ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+          `npm install -D @types/three ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
       {
@@ -132,7 +132,7 @@ const templates: Template[] = [
         customCommands: [
           `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
           `npm install ssam@latest ${threePkg} --prefix TARGET_DIR`,
-          `npm install -D @types/node @types/three ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+          `npm install -D @types/three ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
       {
