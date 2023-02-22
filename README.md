@@ -18,13 +18,10 @@ It will set up all the necessary files and Vite bundler so you can go straight i
   - TypeScript
   - JavaScript
 - OGL
-  - Fullscreen Shader TS
   - Fullscreen Shader TS with Lygia
   - Basic Cube TS
 - Three
-  - Fullscreen Shader TS
   - Fullscreen Shader TS with Lygia
-  - Fullscreen Shader JS
   - Fullscreen Shader JS with Lygia
 - more will be added...
 

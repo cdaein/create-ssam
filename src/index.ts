@@ -81,15 +81,15 @@ const templates: Template[] = [
     display: "OGL",
     color: green,
     options: [
-      {
-        name: "ogl-shader-ts",
-        display: "Fullscreen Shader TS",
-        color: blue,
-        customCommands: [
-          `npm install ssam@latest ${oglPkg} --prefix TARGET_DIR`,
-          `npm install -D @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
-        ],
-      },
+      // {
+      //   name: "ogl-shader-ts",
+      //   display: "Fullscreen Shader TS",
+      //   color: blue,
+      //   customCommands: [
+      //     `npm install ssam@latest ${oglPkg} --prefix TARGET_DIR`,
+      //     `npm install -D @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+      //   ],
+      // },
       {
         name: "ogl-shader-lygia-ts",
         display: "Fullscreen Shader TS with Lygia",
@@ -116,15 +116,15 @@ const templates: Template[] = [
     display: "Three.js",
     color: magenta,
     options: [
-      {
-        name: "three-shader-ts",
-        display: "Fullscreen Shader TS",
-        color: blue,
-        customCommands: [
-          `npm install ssam@latest ${threePkg} --prefix TARGET_DIR`,
-          `npm install -D @types/three ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
-        ],
-      },
+      // {
+      //   name: "three-shader-ts",
+      //   display: "Fullscreen Shader TS",
+      //   color: blue,
+      //   customCommands: [
+      //     `npm install ssam@latest ${threePkg} --prefix TARGET_DIR`,
+      //     `npm install -D @types/three ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+      //   ],
+      // },
       {
         name: "three-shader-lygia-ts",
         display: "Fullscreen Shader TS with Lygia",
@@ -135,15 +135,15 @@ const templates: Template[] = [
           `npm install -D @types/three ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
-      {
-        name: "three-shader-js",
-        display: "Fullscreen Shader JS",
-        color: yellow,
-        customCommands: [
-          `npm install ssam@latest ${threePkg} --prefix TARGET_DIR`,
-          `npm install -D ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
-        ],
-      },
+      // {
+      //   name: "three-shader-js",
+      //   display: "Fullscreen Shader JS",
+      //   color: yellow,
+      //   customCommands: [
+      //     `npm install ssam@latest ${threePkg} --prefix TARGET_DIR`,
+      //     `npm install -D ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+      //   ],
+      // },
       {
         name: "three-shader-lygia-js",
         display: "Fullscreen Shader JS with Lygia",
