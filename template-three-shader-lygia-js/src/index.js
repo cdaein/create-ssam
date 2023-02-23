@@ -55,6 +55,7 @@ const sketch = ({ wrap, canvas, width, height, pixelRatio }) => {
 
   wrap.unload = () => {
     renderer.dispose();
+    renderer.forceContextLoss();
   };
 };
 
