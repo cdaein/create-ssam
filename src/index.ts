@@ -48,6 +48,7 @@ const ssamPluginPkgs = `vite-plugin-ssam-export vite-plugin-ssam-ffmpeg vite-plu
 const oglPkg = `ogl@0.0.110`;
 const viteGlslPkg = `vite-plugin-glsl@1.1.2`;
 const threePkg = `three`;
+const thingPkg = `@thi.ng/color @thi.ng/random`;
 
 // option name follows the format "template-" + name
 const templates: Template[] = [
@@ -364,7 +365,7 @@ async function init() {
   console.log(`\nDone. Now run:\n`);
 
   if (root !== cwd) {
-    console.log(`  cd ${path.relative(cwd, root)}`);
+    console.log(`  ${bold(`cd`)} ${path.relative(cwd, root)}`);
   }
   switch (pkgManager) {
     case "yarn":

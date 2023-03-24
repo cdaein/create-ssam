@@ -8,11 +8,6 @@ const sketch = ({ wrap, canvas, width, height, pixelRatio }: WebGLProps) => {
   if (import.meta.hot) {
     import.meta.hot.dispose(() => wrap.dispose());
     import.meta.hot.accept(() => wrap.hotReload());
-    import.meta.hot.on("ssam:timelapse-changed", () => {
-      import.meta.hot?.send("ssam:timelapse-newframe", {
-        image: canvas.toDataURL(),
-      });
-    });
   }
 
   const renderer = new Renderer({
