@@ -1,6 +1,8 @@
 # create-ssam
 
-Quickstart a sketch with [`ssam`](https://github.com/cdaein/ssam).
+Ssam (쌈 as in Korean dish) wraps your HTML5 Canvas sketches and provides helpful features such as animation props, image and video exports on top of Node.js and Vite bundler. The design is minimal so you can bring your own canvas library (or use as vanilla js).
+
+Learn how to quickstart a creative coding sketch with [`ssam`](https://github.com/cdaein/ssam) on its [wiki](https://github.com/cdaein/ssam/wiki). This package `create-ssam` sets up a basic sketch structure using one of the templates.
 
 ## How to
 
