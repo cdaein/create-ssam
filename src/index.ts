@@ -64,7 +64,7 @@ const templates: Template[] = [
         display: "TypeScript",
         color: blue,
         customCommands: [
-          `npm install ssam@latest  --prefix TARGET_DIR`,
+          `npm install ssam@latest --prefix TARGET_DIR`,
           `npm install -D ${commonTSPkgs} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
