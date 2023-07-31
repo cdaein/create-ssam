@@ -44,6 +44,8 @@ type TemplateOption = {
 };
 
 const commonPkgs = `ssam`;
+const commonTSPkgs = `typescript@5.1.6 vite@4.4.7`;
+const commonJSPkgs = `vite@4.4.7`;
 const ssamPluginPkgs = `vite-plugin-ssam-export vite-plugin-ssam-ffmpeg vite-plugin-ssam-git vite-plugin-ssam-timelapse`;
 const oglPkg = `ogl@0.0.110`;
 const viteGlslPkg = `vite-plugin-glsl@1.1.2`;
@@ -62,8 +64,8 @@ const templates: Template[] = [
         display: "TypeScript",
         color: blue,
         customCommands: [
-          `npm install ssam@latest --prefix TARGET_DIR`,
-          `npm install -D ${ssamPluginPkgs} --prefix TARGET_DIR`,
+          `npm install ssam@latest  --prefix TARGET_DIR`,
+          `npm install -D ${commonTSPkgs} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
       {
@@ -72,7 +74,7 @@ const templates: Template[] = [
         color: yellow,
         customCommands: [
           `npm install ssam@latest --prefix TARGET_DIR`,
-          `npm install -D ${ssamPluginPkgs} --prefix TARGET_DIR`,
+          `npm install -D ${commonJSPkgs} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
     ],
@@ -98,7 +100,7 @@ const templates: Template[] = [
         customCommands: [
           `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
           `npm install ssam@latest ${oglPkg} --prefix TARGET_DIR`,
-          `npm install -D @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+          `npm install -D ${commonTSPkgs} @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
       {
@@ -107,7 +109,7 @@ const templates: Template[] = [
         color: green,
         customCommands: [
           `npm install ssam@latest ${oglPkg} --prefix TARGET_DIR`,
-          `npm install -D @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+          `npm install -D ${commonTSPkgs} @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
     ],
@@ -133,7 +135,7 @@ const templates: Template[] = [
         customCommands: [
           `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
           `npm install ssam@latest ${threePkg} --prefix TARGET_DIR`,
-          `npm install -D @types/three ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+          `npm install -D ${commonTSPkgs} @types/three ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
       // {
@@ -152,7 +154,7 @@ const templates: Template[] = [
         customCommands: [
           `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
           `npm install ssam@latest ${threePkg} --prefix TARGET_DIR`,
-          `npm install -D ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+          `npm install -D ${commonJSPkgs} ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
     ],
