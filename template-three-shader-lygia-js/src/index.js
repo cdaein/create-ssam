@@ -22,7 +22,7 @@ const sketch = ({ wrap, canvas, width, height, pixelRatio }) => {
   renderer.setPixelRatio(pixelRatio);
   renderer.setClearColor(0xffffff, 1);
 
-  const camera = new OrthographicCamera(-1, 1, 1 - 1, 0, 1);
+  const camera = new OrthographicCamera(-1, 1, 1, -1, 0, 1);
   const scene = new Scene();
 
   const geometry = new PlaneGeometry(2, 2);
