@@ -44,6 +44,8 @@ type TemplateOption = {
 };
 
 const commonPkgs = `ssam`;
+// NOTE: for compatibility check, don't use @latest, but test updates from time to time before updating.
+//       users can always update package.json themselves.
 const commonTSPkgs = `typescript@5.1.6 vite@4.4.7`;
 const commonJSPkgs = `vite@4.4.7`;
 const ssamPluginPkgs = `vite-plugin-ssam-export vite-plugin-ssam-ffmpeg vite-plugin-ssam-git vite-plugin-ssam-timelapse`;
@@ -79,6 +81,7 @@ const templates: Template[] = [
       },
     ],
   },
+
   {
     name: "ogl",
     display: "OGL",
@@ -103,31 +106,34 @@ const templates: Template[] = [
           `npm install -D ${commonTSPkgs} @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
-      {
-        name: "ogl-cube-ts",
-        display: "Basic Cube Scene TS",
-        color: green,
-        customCommands: [
-          `npm install ssam@latest ${oglPkg} --prefix TARGET_DIR`,
-          `npm install -D ${commonTSPkgs} @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
-        ],
-      },
+      // TODO: not ready yet (use buffer geometry/attributes)
+      // {
+      //   name: "ogl-cube-ts",
+      //   display: "Basic Cube Scene TS",
+      //   color: green,
+      //   customCommands: [
+      //     `npm install ssam@latest ${oglPkg} --prefix TARGET_DIR`,
+      //     `npm install -D ${commonTSPkgs} @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+      //   ],
+      // },
     ],
   },
+
   {
     name: "three",
     display: "Three.js",
     color: magenta,
     options: [
-      // {
-      //   name: "three-shader-ts",
-      //   display: "Fullscreen Shader TS",
-      //   color: blue,
-      //   customCommands: [
-      //     `npm install ssam@latest ${threePkg} --prefix TARGET_DIR`,
-      //     `npm install -D @types/three ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
-      //   ],
-      // },
+      {
+        name: "three-cube-ts",
+        display: "Basic Cube Scene TS with Lygia",
+        color: blue,
+        customCommands: [
+          `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
+          `npm install ssam@latest ${threePkg} --prefix TARGET_DIR`,
+          `npm install -D ${commonTSPkgs} @types/three ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+        ],
+      },
       {
         name: "three-shader-lygia-ts",
         display: "Fullscreen Shader TS with Lygia",
@@ -138,15 +144,6 @@ const templates: Template[] = [
           `npm install -D ${commonTSPkgs} @types/three ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
-      // {
-      //   name: "three-shader-js",
-      //   display: "Fullscreen Shader JS",
-      //   color: yellow,
-      //   customCommands: [
-      //     `npm install ssam@latest ${threePkg} --prefix TARGET_DIR`,
-      //     `npm install -D ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
-      //   ],
-      // },
       {
         name: "three-shader-lygia-js",
         display: "Fullscreen Shader JS with Lygia",
@@ -302,7 +299,7 @@ async function init() {
     fileURLToPath(import.meta.url),
     "../..",
     `templates`,
-    `template-${option}`,
+    `${option}`,
   );
 
   // REVIEW: i don't overwrite
