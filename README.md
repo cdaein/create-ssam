@@ -27,6 +27,13 @@ It will set up all the necessary files and Vite bundler so you can go straight i
   - Fullscreen Shader JS with Lygia
 - more will be added...
 
+## Test Locally
+
+- `npm run build`
+- `npm link` to make it available locally
+- on Desktop, `node ~/path/to/bin/create-ssam.js`
+- follow setup instructions.
+
 ## License
 
 MIT
