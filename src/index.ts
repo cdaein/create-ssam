@@ -87,15 +87,6 @@ const templates: Template[] = [
     display: "OGL",
     color: green,
     options: [
-      // {
-      //   name: "ogl-shader-ts",
-      //   display: "Fullscreen Shader TS",
-      //   color: blue,
-      //   customCommands: [
-      //     `npm install ssam@latest ${oglPkg} --prefix TARGET_DIR`,
-      //     `npm install -D @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
-      //   ],
-      // },
       {
         name: "ogl-shader-lygia-ts",
         display: "Fullscreen Shader TS with Lygia",
@@ -106,16 +97,15 @@ const templates: Template[] = [
           `npm install -D ${commonTSPkgs} @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         ],
       },
-      // TODO: not ready yet (use buffer geometry/attributes)
-      // {
-      //   name: "ogl-cube-ts",
-      //   display: "Basic Cube Scene TS",
-      //   color: green,
-      //   customCommands: [
-      //     `npm install ssam@latest ${oglPkg} --prefix TARGET_DIR`,
-      //     `npm install -D ${commonTSPkgs} @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
-      //   ],
-      // },
+      {
+        name: "ogl-cube-ts",
+        display: "Basic Cube Scene TS",
+        color: green,
+        customCommands: [
+          `npm install ssam@latest ${oglPkg} --prefix TARGET_DIR`,
+          `npm install -D ${commonTSPkgs} @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+        ],
+      },
     ],
   },
 
@@ -127,7 +117,7 @@ const templates: Template[] = [
       {
         name: "three-cube-ts",
         display: "Basic Cube Scene TS with Lygia",
-        color: blue,
+        color: green,
         customCommands: [
           `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
           `npm install ssam@latest ${threePkg} --prefix TARGET_DIR`,
