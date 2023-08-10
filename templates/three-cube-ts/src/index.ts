@@ -2,6 +2,7 @@ import { ssam } from "ssam";
 import type { Sketch, WebGLProps, SketchSettings } from "ssam";
 import { BoxGeometry, Mesh, PerspectiveCamera, Scene, ShaderMaterial, WebGLRenderer } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import Stats from "three/examples/jsm/libs/stats.module";
 import vert from "./shaders/vert.glsl";
 import frag from "./shaders/frag.glsl";
 
@@ -22,6 +23,9 @@ const sketch = ({ wrap, canvas, width, height, pixelRatio }: WebGLProps) => {
 
   const controls = new OrbitControls(camera, renderer.domElement);
 
+  const stats = new Stats();
+  document.body.appendChild(stats.dom);
+
   const scene = new Scene();
 
   const geometry = new BoxGeometry(1, 1, 1);
@@ -40,6 +44,7 @@ const sketch = ({ wrap, canvas, width, height, pixelRatio }: WebGLProps) => {
     uniforms["time"].value = playhead * Math.PI * 2;
 
     controls.update();
+    stats.update();
     renderer.render(scene, camera);
   };
 
