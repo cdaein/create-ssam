@@ -116,7 +116,7 @@ const templates: Template[] = [
     options: [
       {
         name: "three-cube-ts",
-        display: "Basic Cube Scene TS with Lygia",
+        display: "Basic Cube TS with Lygia",
         color: green,
         customCommands: [
           `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
@@ -173,8 +173,8 @@ log(
     figlet.textSync("create ssam", {
       font: "Ogre",
       whitespaceBreak: true,
-    }),
-  )}`,
+    })
+  )}`
 );
 
 log(bold().white(`Let's create a new sketch with ssam/쌈.\n`));
@@ -184,7 +184,8 @@ async function init() {
     "projectName" | "overwrite" | "packageName" | "template" | "option"
   >;
 
-  const getProjectName = () => (targetDir === "." ? path.basename(path.resolve()) : targetDir);
+  const getProjectName = () =>
+    targetDir === "." ? path.basename(path.resolve()) : targetDir;
 
   try {
     response = await prompts(
@@ -208,7 +209,7 @@ async function init() {
               throw new Error(
                 red("✖") +
                   ` Target directory "${targetDir}"` +
-                  ` is not empty. Try again with another name or empty the directory first.`,
+                  ` is not empty. Try again with another name or empty the directory first.`
               );
             }
           },
@@ -230,7 +231,8 @@ async function init() {
           name: "packageName",
           message: "Package name:",
           initial: () => toValidPackageName(getProjectName()),
-          validate: (dir) => isValidPackageName(dir) || "Invalid package.json name",
+          validate: (dir) =>
+            isValidPackageName(dir) || "Invalid package.json name",
         },
         // template
         {
@@ -264,7 +266,7 @@ async function init() {
         onCancel: () => {
           throw new Error(red("✖") + " cancelled");
         },
-      },
+      }
     );
   } catch (cancelled: any) {
     console.log(cancelled.message);
@@ -289,7 +291,7 @@ async function init() {
     fileURLToPath(import.meta.url),
     "../..",
     `templates`,
-    `${option}`,
+    `${option}`
   );
 
   // REVIEW: i don't overwrite
@@ -308,7 +310,9 @@ async function init() {
     write(file);
   }
 
-  const pkg = JSON.parse(fs.readFileSync(path.join(templateDir, `package.json`), "utf-8"));
+  const pkg = JSON.parse(
+    fs.readFileSync(path.join(templateDir, `package.json`), "utf-8")
+  );
 
   pkg.name = packageName || getProjectName();
 
@@ -363,7 +367,9 @@ async function init() {
       console.log(`  ${pkgManager} run dev`);
       break;
   }
-  console.log(`\nFind the latest updates of Ssam at http://github.com/cdaein/ssam`);
+  console.log(
+    `\nFind the latest updates of Ssam at http://github.com/cdaein/ssam`
+  );
   console.log();
 }
 
@@ -374,7 +380,9 @@ function formatTargetDir(targetDir: string | undefined) {
 }
 
 function isValidPackageName(projectName: string) {
-  return /^(?:@[a-z\d\-*~][a-z\d\-*._~]*\/)?[a-z\d\-~][a-z\d\-._~]*$/.test(projectName);
+  return /^(?:@[a-z\d\-*~][a-z\d\-*._~]*\/)?[a-z\d\-~][a-z\d\-._~]*$/.test(
+    projectName
+  );
 }
 
 function toValidPackageName(projectName: string) {

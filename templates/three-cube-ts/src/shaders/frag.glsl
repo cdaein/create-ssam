@@ -1,3 +1,9 @@
+// Three.js Built-in uniforms and attributes
+// (these are only a few unconditional ones)
+// https://threejs.org/docs/index.html#api/en/renderers/webgl/WebGLProgram
+// uniform mat4 viewMatrix;
+// uniform vec3 cameraPosition;
+
 precision highp float;
 
 // #include "../../lygia/sdf/circleSDF.glsl"
