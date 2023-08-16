@@ -3,9 +3,9 @@
  * - add CLI flag options (instead of going through prompts)
  * - instead of using custom command, search for all dependency used in src/* and install them
  *
+ * FIX: yarn doesn't have -D or --save-dev => yarn add --dev
  * -> more options
  *   - choose multiple common ones
- *     - @thi.ng/random
  *     - @thi.ng/vector
  *     - mouse/keyboard events
  *     - image loader
@@ -43,6 +43,11 @@ type TemplateOption = {
   customCommands?: string[];
 };
 
+type ExtraPack = {
+  title: string;
+  value: string;
+};
+
 const commonPkgs = `ssam`;
 // NOTE: for compatibility check, don't use @latest, but test updates from time to time before updating.
 //       users can always update package.json themselves.
@@ -52,7 +57,31 @@ const ssamPluginPkgs = `vite-plugin-ssam-export vite-plugin-ssam-ffmpeg vite-plu
 const oglPkg = `ogl@0.0.110`;
 const viteGlslPkg = `vite-plugin-glsl@1.1.2`;
 const threePkg = `three`;
-const thingPkg = `@thi.ng/color @thi.ng/random`;
+
+// REVIEW: prompts doesn't return "title" in response. it returns "value"
+const extraPacks: ExtraPack[] = [
+  {
+    title: `Random`,
+    value: `@thi.ng/random @thi.ng/arrays`,
+  },
+  {
+    title: `Color`,
+    value: `@thi.ng/color @thi.ng/color-palettes`,
+  },
+  {
+    title: `Daeinc Pack`,
+    value: `@daeinc/math @daeinc/geom @daeinc/draw`,
+  },
+  // REVIEW: how to handle -D packages
+  // {
+  //   title: `Animation`,
+  //   color: yellow,
+  //   value: [
+  //     `eases @daeinc/timeline`,
+  //     `npm install -D @types/eases`,
+  //   ],
+  // },
+];
 
 // option name follows the format "/templates/template-" + name
 const templates: Template[] = [
@@ -173,15 +202,20 @@ log(
     figlet.textSync("create ssam", {
       font: "Ogre",
       whitespaceBreak: true,
-    })
-  )}`
+    }),
+  )}`,
 );
 
 log(bold().white(`Let's create a new sketch with ssam/쌈.\n`));
 
 async function init() {
   let response: prompts.Answers<
-    "projectName" | "overwrite" | "packageName" | "template" | "option"
+    | "projectName"
+    | "overwrite"
+    | "packageName"
+    | "template"
+    | "option"
+    | "extra"
   >;
 
   const getProjectName = () =>
@@ -200,6 +234,7 @@ async function init() {
             targetDir = formatTargetDir(state.value) || defaultTargetDir;
           },
         },
+
         // handle directory
         {
           type: () => {
@@ -209,12 +244,13 @@ async function init() {
               throw new Error(
                 red("✖") +
                   ` Target directory "${targetDir}"` +
-                  ` is not empty. Try again with another name or empty the directory first.`
+                  ` is not empty. Try again with another name or empty the directory first.`,
               );
             }
           },
           name: "overwrite",
         },
+
         //
         {
           type: (_, { overwrite }: { overwrite?: boolean }) => {
@@ -225,6 +261,7 @@ async function init() {
           },
           name: "overwriteChecker",
         },
+
         // package name
         {
           type: () => (isValidPackageName(getProjectName()) ? null : "text"),
@@ -234,6 +271,7 @@ async function init() {
           validate: (dir) =>
             isValidPackageName(dir) || "Invalid package.json name",
         },
+
         // template
         {
           type: "select",
@@ -247,6 +285,7 @@ async function init() {
             };
           }),
         },
+
         // template option
         {
           type: "select",
@@ -261,19 +300,29 @@ async function init() {
               };
             }),
         },
+
+        // extra dependencies
+        {
+          type: "multiselect",
+          name: "extra",
+          message: "Select extra packages to install",
+          instructions: false,
+          choices: extraPacks,
+          hint: "- Space to select. Return to submit",
+        },
       ],
       {
         onCancel: () => {
           throw new Error(red("✖") + " cancelled");
         },
-      }
+      },
     );
   } catch (cancelled: any) {
     console.log(cancelled.message);
     return;
   }
 
-  const { overwrite, packageName, option } = response;
+  const { overwrite, packageName, option, extra } = response;
 
   const root = path.join(cwd, targetDir);
 
@@ -291,7 +340,7 @@ async function init() {
     fileURLToPath(import.meta.url),
     "../..",
     `templates`,
-    `${option}`
+    `${option}`,
   );
 
   // REVIEW: i don't overwrite
@@ -311,7 +360,7 @@ async function init() {
   }
 
   const pkg = JSON.parse(
-    fs.readFileSync(path.join(templateDir, `package.json`), "utf-8")
+    fs.readFileSync(path.join(templateDir, `package.json`), "utf-8"),
   );
 
   pkg.name = packageName || getProjectName();
@@ -352,6 +401,42 @@ async function init() {
     });
   }
 
+  const extraCommand = [
+    "npm install",
+    (extra as string[]).join(" "),
+    "--prefix TARGET_DIR",
+  ]
+    .join(" ")
+    .trim();
+
+  if (extraCommand) {
+    const fullExtraCommand = extraCommand
+      .replace("TARGET_DIR", targetDir)
+      .replace(/^npm create/, `${pkgManager} create`)
+      .replace(/^npm install/, `${pkgManager} install`)
+      // Only Yarn 1.x doesn't support `@version` in the `create` command
+      .replace("@latest", () => (isYarn1 ? "" : "@latest"))
+      .replace(/^npm exec/, () => {
+        // Prefer `pnpm dlx` or `yarn dlx`
+        if (pkgManager === "pnpm") {
+          return "pnpm dlx";
+        }
+        if (pkgManager === "yarn" && !isYarn1) {
+          return "yarn dlx";
+        }
+        // Use `npm exec` in all other cases,
+        // including Yarn 1.x and other custom npm clients.
+        return "npm exec";
+      });
+
+    const [command, ...args] = fullExtraCommand.split(" ");
+    const { status } = spawn.sync(command, args, {
+      stdio: "inherit",
+      cwd: command.startsWith(`git`) ? targetDir : `.`,
+    });
+    // process.exit(status ?? 0);
+  }
+
   console.log(`\nDone. Now run:\n`);
 
   if (root !== cwd) {
@@ -368,7 +453,7 @@ async function init() {
       break;
   }
   console.log(
-    `\nFind the latest updates of Ssam at http://github.com/cdaein/ssam`
+    `\nFind the latest updates of Ssam at http://github.com/cdaein/ssam`,
   );
   console.log();
 }
@@ -381,7 +466,7 @@ function formatTargetDir(targetDir: string | undefined) {
 
 function isValidPackageName(projectName: string) {
   return /^(?:@[a-z\d\-*~][a-z\d\-*._~]*\/)?[a-z\d\-~][a-z\d\-._~]*$/.test(
-    projectName
+    projectName,
   );
 }
 
