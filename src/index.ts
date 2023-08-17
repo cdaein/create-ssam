@@ -11,6 +11,7 @@
  *     - image loader
  *
  * TODO:
+ * - `yarn add` test (also, dev packages)
  * - copy the same single _gitignore from root
  */
 
@@ -36,16 +37,22 @@ type Template = {
   options: TemplateOption[];
 };
 
+type InstallCommandsGroup = {
+  dep?: string;
+  devDep?: string;
+  git?: string;
+};
+
 type TemplateOption = {
   name: string;
   display: string;
   color: kleur.Color;
-  customCommands?: string[];
+  installCommands?: InstallCommandsGroup;
 };
 
 type ExtraPack = {
   title: string;
-  value: string;
+  value: InstallCommandsGroup;
 };
 
 const commonPkgs = `ssam`;
@@ -58,29 +65,35 @@ const oglPkg = `ogl@0.0.110`;
 const viteGlslPkg = `vite-plugin-glsl@1.1.2`;
 const threePkg = `three`;
 
-// REVIEW: prompts doesn't return "title" in response. it returns "value"
+// NOTE: prompts doesn't return "title" in response. it returns "value"
 const extraPacks: ExtraPack[] = [
   {
-    title: `Random`,
-    value: `@thi.ng/random @thi.ng/arrays`,
-  },
-  {
     title: `Color`,
-    value: `@thi.ng/color @thi.ng/color-palettes`,
+    value: {
+      dep: `@thi.ng/color @thi.ng/color-palettes`,
+    },
   },
   {
     title: `Daeinc Pack`,
-    value: `@daeinc/math @daeinc/geom @daeinc/draw`,
+    value: { dep: `@daeinc/math @daeinc/geom @daeinc/draw` },
   },
-  // REVIEW: how to handle -D packages
-  // {
-  //   title: `Animation`,
-  //   color: yellow,
-  //   value: [
-  //     `eases @daeinc/timeline`,
-  //     `npm install -D @types/eases`,
-  //   ],
-  // },
+  {
+    title: `Lygia (GLSL)`,
+    value: {
+      git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
+    },
+  },
+  {
+    title: `Random`,
+    value: { dep: `@thi.ng/random @thi.ng/arrays` },
+  },
+  {
+    title: `Animation`,
+    value: {
+      dep: `eases @daeinc/timeline`,
+      devDep: `@types/eases`,
+    },
+  },
 ];
 
 // option name follows the format "/templates/template-" + name
@@ -94,19 +107,19 @@ const templates: Template[] = [
         name: "vanilla-ts",
         display: "TypeScript",
         color: blue,
-        customCommands: [
-          `npm install ssam@latest --prefix TARGET_DIR`,
-          `npm install -D ${commonTSPkgs} ${ssamPluginPkgs} --prefix TARGET_DIR`,
-        ],
+        installCommands: {
+          dep: `ssam@latest --prefix TARGET_DIR`,
+          devDep: `${commonTSPkgs} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+        },
       },
       {
         name: "vanilla",
         display: "JavaScript",
         color: yellow,
-        customCommands: [
-          `npm install ssam@latest --prefix TARGET_DIR`,
-          `npm install -D ${commonJSPkgs} ${ssamPluginPkgs} --prefix TARGET_DIR`,
-        ],
+        installCommands: {
+          dep: `ssam@latest --prefix TARGET_DIR`,
+          devDep: `${commonJSPkgs} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+        },
       },
     ],
   },
@@ -120,20 +133,19 @@ const templates: Template[] = [
         name: "ogl-shader-lygia-ts",
         display: "Fullscreen Shader TS with Lygia",
         color: blue,
-        customCommands: [
-          `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
-          `npm install ssam@latest ${oglPkg} --prefix TARGET_DIR`,
-          `npm install -D ${commonTSPkgs} @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
-        ],
+        installCommands: {
+          dep: `ssam@latest ${oglPkg} --prefix TARGET_DIR`,
+          devDep: `${commonTSPkgs} @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+        },
       },
       {
         name: "ogl-cube-ts",
         display: "Basic Cube Scene TS",
         color: green,
-        customCommands: [
-          `npm install ssam@latest ${oglPkg} --prefix TARGET_DIR`,
-          `npm install -D ${commonTSPkgs} @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
-        ],
+        installCommands: {
+          dep: `ssam@latest ${oglPkg} --prefix TARGET_DIR`,
+          devDep: `${commonTSPkgs} @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+        },
       },
     ],
   },
@@ -147,48 +159,33 @@ const templates: Template[] = [
         name: "three-cube-ts",
         display: "Basic Cube TS with Lygia",
         color: green,
-        customCommands: [
-          `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
-          `npm install ssam@latest ${threePkg} --prefix TARGET_DIR`,
-          `npm install -D ${commonTSPkgs} @types/three ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
-        ],
+        installCommands: {
+          // git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
+          dep: `ssam@latest ${threePkg} --prefix TARGET_DIR`,
+          devDep: `${commonTSPkgs} @types/three ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+        },
       },
       {
         name: "three-shader-lygia-ts",
         display: "Fullscreen Shader TS with Lygia",
         color: blue,
-        customCommands: [
-          `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
-          `npm install ssam@latest ${threePkg} --prefix TARGET_DIR`,
-          `npm install -D ${commonTSPkgs} @types/three ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
-        ],
+        installCommands: {
+          dep: `ssam@latest ${threePkg} --prefix TARGET_DIR`,
+          devDep: `${commonTSPkgs} @types/three ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+        },
       },
       {
         name: "three-shader-lygia-js",
         display: "Fullscreen Shader JS with Lygia",
         color: yellow,
-        customCommands: [
-          `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
-          `npm install ssam@latest ${threePkg} --prefix TARGET_DIR`,
-          `npm install -D ${commonJSPkgs} ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
-        ],
+        installCommands: {
+          dep: `ssam@latest ${threePkg} --prefix TARGET_DIR`,
+          devDep: `${commonJSPkgs} ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+        },
       },
     ],
   },
 ];
-
-// const languages = [
-//   {
-//     name: "ts",
-//     display: "Typescript",
-//     color: blue,
-//   },
-//   {
-//     name: "js",
-//     display: "JavaScript",
-//     color: yellow,
-//   },
-// ];
 
 const renameFiles: Record<string, string | undefined> = {
   _gitignore: ".gitignore",
@@ -367,12 +364,43 @@ async function init() {
 
   write("package.json", JSON.stringify(pkg, null, 2));
 
-  const { customCommands } =
+  // 1. get install commands from template option
+  // 2. get install commnads from extra
+  // 3. combine them into a single array
+  // 4. run install commands for each (3 times)
+
+  const { installCommands } =
     templates.flatMap((t) => t.options).find((o) => o.name === option) ?? {};
 
-  // REVIEW: yarn install test?
-  if (customCommands) {
-    customCommands.forEach((customCommand) => {
+  // collect all install commands from template option & extra packages
+  const toInstall = ["npm install"];
+  const toInstallDev = ["npm install -D"];
+  const toGit = [];
+
+  if (installCommands) {
+    installCommands.dep && toInstall.push(installCommands.dep);
+    installCommands.devDep && toInstallDev.push(installCommands.devDep);
+    installCommands.git && toGit.push(installCommands.git);
+  }
+
+  for (let i = 0; i < extra.length; i++) {
+    extra[i].dep && toInstall.push(extra[i].dep);
+    extra[i].devDep && toInstallDev.push(extra[i].devDep);
+    extra[i].git && toGit.push(extra[i].git);
+  }
+
+  const toInstallStr = toInstall.join(" ");
+  const toInstallDevStr = toInstallDev.join(" ");
+  const toGitStr = toGit.join(" ");
+
+  // console.log({ toInstallStr });
+  // console.log({ toInstallDevStr });
+  // console.log({ toGitStr });
+
+  const combinedInstallCommands = [toInstallStr, toInstallDevStr, toGitStr];
+
+  if (combinedInstallCommands) {
+    combinedInstallCommands.forEach((customCommand) => {
       const fullCustomCommand = customCommand
         .replace("TARGET_DIR", targetDir)
         .replace(/^npm create/, `${pkgManager} create`)
@@ -399,42 +427,6 @@ async function init() {
       });
       // process.exit(status ?? 0);
     });
-  }
-
-  const extraCommand = [
-    "npm install",
-    (extra as string[]).join(" "),
-    "--prefix TARGET_DIR",
-  ]
-    .join(" ")
-    .trim();
-
-  if (extraCommand) {
-    const fullExtraCommand = extraCommand
-      .replace("TARGET_DIR", targetDir)
-      .replace(/^npm create/, `${pkgManager} create`)
-      .replace(/^npm install/, `${pkgManager} install`)
-      // Only Yarn 1.x doesn't support `@version` in the `create` command
-      .replace("@latest", () => (isYarn1 ? "" : "@latest"))
-      .replace(/^npm exec/, () => {
-        // Prefer `pnpm dlx` or `yarn dlx`
-        if (pkgManager === "pnpm") {
-          return "pnpm dlx";
-        }
-        if (pkgManager === "yarn" && !isYarn1) {
-          return "yarn dlx";
-        }
-        // Use `npm exec` in all other cases,
-        // including Yarn 1.x and other custom npm clients.
-        return "npm exec";
-      });
-
-    const [command, ...args] = fullExtraCommand.split(" ");
-    const { status } = spawn.sync(command, args, {
-      stdio: "inherit",
-      cwd: command.startsWith(`git`) ? targetDir : `.`,
-    });
-    // process.exit(status ?? 0);
   }
 
   console.log(`\nDone. Now run:\n`);
