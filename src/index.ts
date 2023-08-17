@@ -397,7 +397,13 @@ async function init() {
   // console.log({ toInstallDevStr });
   // console.log({ toGitStr });
 
-  const combinedInstallCommands = [toInstallStr, toInstallDevStr, toGitStr];
+  const combinedInstallCommands = [
+    toInstallStr,
+    toInstallDevStr,
+    toGitStr,
+  ].filter((str) => str.length !== 0);
+
+  console.log({ combinedInstallCommands });
 
   if (combinedInstallCommands) {
     combinedInstallCommands.forEach((customCommand) => {
@@ -421,6 +427,7 @@ async function init() {
         });
 
       const [command, ...args] = fullCustomCommand.split(" ");
+
       const { status } = spawn.sync(command, args, {
         stdio: "inherit",
         cwd: command.startsWith(`git`) ? targetDir : `.`,
