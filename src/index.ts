@@ -130,8 +130,8 @@ const templates: Template[] = [
     color: green,
     options: [
       {
-        name: "ogl-shader-lygia-ts",
-        display: "Fullscreen Shader TS with Lygia",
+        name: "ogl-shader-ts",
+        display: "Fullscreen Shader TS",
         color: blue,
         installCommands: {
           dep: `ssam@latest ${oglPkg} --prefix TARGET_DIR`,
@@ -157,7 +157,7 @@ const templates: Template[] = [
     options: [
       {
         name: "three-cube-ts",
-        display: "Basic Cube TS with Lygia",
+        display: "Basic Cube TS",
         color: green,
         installCommands: {
           // git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
@@ -166,8 +166,8 @@ const templates: Template[] = [
         },
       },
       {
-        name: "three-shader-lygia-ts",
-        display: "Fullscreen Shader TS with Lygia",
+        name: "three-shader-ts",
+        display: "Fullscreen Shader TS",
         color: blue,
         installCommands: {
           dep: `ssam@latest ${threePkg} --prefix TARGET_DIR`,
@@ -175,8 +175,8 @@ const templates: Template[] = [
         },
       },
       {
-        name: "three-shader-lygia-js",
-        display: "Fullscreen Shader JS with Lygia",
+        name: "three-shader-js",
+        display: "Fullscreen Shader JS",
         color: yellow,
         installCommands: {
           dep: `ssam@latest ${threePkg} --prefix TARGET_DIR`,
