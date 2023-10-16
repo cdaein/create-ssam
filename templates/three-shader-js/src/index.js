@@ -1,4 +1,4 @@
-import { ssam } from "ssam";
+import { ssam, WebGLProps, SketchSettings } from "ssam";
 import {
   Mesh,
   OrthographicCamera,
@@ -11,6 +11,7 @@ import {
 import baseVert from "./shaders/base.vert";
 import baseFrag from "./shaders/base.frag";
 
+/** @param {WebGLProps} */
 const sketch = ({ wrap, canvas, width, height, pixelRatio }) => {
   if (import.meta.hot) {
     import.meta.hot.dispose(() => wrap.dispose());
@@ -54,6 +55,7 @@ const sketch = ({ wrap, canvas, width, height, pixelRatio }) => {
   };
 };
 
+/** @type SketchSettings */
 const settings = {
   mode: "webgl2",
   // dimensions: [800, 800],

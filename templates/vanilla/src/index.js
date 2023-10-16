@@ -1,5 +1,6 @@
-import { ssam } from "ssam";
+import { ssam, SketchProps, SketchSettings } from "ssam";
 
+/** @param {SketchProps} props */
 const sketch = ({ wrap, context: ctx }) => {
   if (import.meta.hot) {
     import.meta.hot.dispose(() => wrap.dispose());
@@ -16,6 +17,7 @@ const sketch = ({ wrap, context: ctx }) => {
   };
 };
 
+/** @type SketchSettings */
 const settings = {
   mode: "2d",
   dimensions: [800, 800],
