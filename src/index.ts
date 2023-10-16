@@ -403,7 +403,8 @@ async function init() {
     toGitStr,
   ].filter((str) => str.length !== 0);
 
-  console.log({ combinedInstallCommands });
+  // REVIEW: log or not?
+  console.log(combinedInstallCommands);
 
   if (combinedInstallCommands) {
     combinedInstallCommands.forEach((customCommand) => {
