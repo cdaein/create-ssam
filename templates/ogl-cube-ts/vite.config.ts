@@ -14,6 +14,7 @@ export default defineConfig({
     ssamGit(),
     //ssamTimelapse()
   ],
+  clearScreen: false,
   build: {
     outDir: "./dist",
     assetsDir: ".",

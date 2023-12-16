@@ -12,6 +12,7 @@ export default defineConfig({
     ssamFfmpeg(),
     // ssamTimelapse(),
   ],
+  clearScreen: false,
   build: {
     outDir: "./dist",
     assetsDir: ".",
