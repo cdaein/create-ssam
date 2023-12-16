@@ -12,7 +12,7 @@
  *
  * TODO:
  * - `yarn add` test (also, dev packages)
- * - copy the same single _gitignore from root
+ * - copy the common files (ex. _gitignore) from commons folder
  */
 
 import fs from "fs";
@@ -33,6 +33,7 @@ const cwd = process.cwd();
 type Template = {
   name: string;
   display: string;
+  description: string;
   color: kleur.Color;
   options: TemplateOption[];
 };
@@ -46,12 +47,14 @@ type InstallCommandsGroup = {
 type TemplateOption = {
   name: string;
   display: string;
+  description: string;
   color: kleur.Color;
   installCommands?: InstallCommandsGroup;
 };
 
 type ExtraPack = {
   title: string;
+  description: string;
   value: InstallCommandsGroup;
 };
 
@@ -70,28 +73,36 @@ const threePkg = `three`;
 const extraPacks: ExtraPack[] = [
   {
     title: `Color`,
+    description: "Install @thi.ng/color and @thi.ng/color-palettes",
     value: {
       dep: `@thi.ng/color @thi.ng/color-palettes`,
     },
   },
   {
     title: `Daeinc Pack`,
+    description: "Install @daeinc/math, @daeinc/geom and @daeinc/draw",
     value: { dep: `@daeinc/math @daeinc/geom @daeinc/draw` },
   },
-  {
-    title: `Lygia (GLSL)`,
-    value: {
-      git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
-    },
-  },
+  // REVIEW: for now, Lygia is instaled via supported templates.
+  // otherwise, it tries to git clone twice (here and template)
+  // maybe, check if template uses lygia, auto-include?
+  // {
+  //   title: `Lygia (GLSL)`,
+  //   description: "Git clone Lygia shader library",
+  //   value: {
+  //     git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
+  //   },
+  // },
   {
     title: `Random`,
+    description: "Install @thi.ng/random and @thi.ng/arrays",
     value: { dep: `@thi.ng/random @thi.ng/arrays` },
   },
   {
     title: `Animation`,
+    description: "Install @daeinc/timeline, @daeinc/keyframes and eases",
     value: {
-      dep: `eases @daeinc/timeline`,
+      dep: `eases @daeinc/timeline @daeinc/keyframes`,
       devDep: `@types/eases`,
     },
   },
@@ -102,11 +113,13 @@ const templates: Template[] = [
   {
     name: "vanilla",
     display: "Vanilla",
+    description: "Set up without Canvas libraries. (or install yourself)",
     color: yellow,
     options: [
       {
         name: "vanilla-ts",
         display: "TypeScript",
+        description: "Create a vanilla sketch in TypeScript",
         color: blue,
         installCommands: {
           dep: `ssam@latest --prefix TARGET_DIR`,
@@ -116,6 +129,7 @@ const templates: Template[] = [
       {
         name: "vanilla",
         display: "JavaScript",
+        description: "Create a vanilla sketch in JavaScript.",
         color: yellow,
         installCommands: {
           dep: `ssam@latest --prefix TARGET_DIR`,
@@ -128,11 +142,13 @@ const templates: Template[] = [
   {
     name: "ogl",
     display: "OGL",
+    description: "Set up with OGL WebGL library",
     color: green,
     options: [
       {
         name: "ogl-shader-ts",
         display: "Fullscreen Shader TS",
+        description: "A shader sketch in TypeScript with Lygia",
         color: blue,
         installCommands: {
           git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
@@ -143,6 +159,7 @@ const templates: Template[] = [
       {
         name: "ogl-cube-ts",
         display: "Basic Cube Scene TS",
+        description: "A basic 3d cube scene in TypeScript",
         color: green,
         installCommands: {
           dep: `ssam@latest ${oglPkg} --prefix TARGET_DIR`,
@@ -155,11 +172,13 @@ const templates: Template[] = [
   {
     name: "three",
     display: "Three.js",
+    description: "Set up with Three.js WebGL library",
     color: magenta,
     options: [
       {
         name: "three-cube-ts",
         display: "Basic Cube TS",
+        description: "A basic 3d cube scene in TypeScript with Lygia",
         color: green,
         installCommands: {
           git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
@@ -170,6 +189,7 @@ const templates: Template[] = [
       {
         name: "three-shader-ts",
         display: "Fullscreen Shader TS",
+        description: "A shader sketch in TypeScript with Lygia",
         color: blue,
         installCommands: {
           git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
@@ -180,6 +200,7 @@ const templates: Template[] = [
       {
         name: "three-shader-js",
         display: "Fullscreen Shader JS",
+        description: "A shader sketch in JavaScript with Lygia",
         color: yellow,
         installCommands: {
           git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
@@ -282,6 +303,7 @@ async function init() {
           choices: templates.map((template) => {
             return {
               title: template.color(template.display),
+              description: template.description,
               value: template,
             };
           }),
@@ -297,6 +319,7 @@ async function init() {
             template.options.map((option) => {
               return {
                 title: option.color(option.display),
+                description: option.description,
                 value: option.name,
               };
             }),
@@ -306,9 +329,9 @@ async function init() {
         {
           type: "multiselect",
           name: "extra",
-          message: "Select extra packages to install",
-          instructions: false,
+          message: "Optionally, select extra packages to install",
           choices: extraPacks,
+          instructions: false,
           hint: "- Space to select. Return to submit",
         },
       ],
@@ -397,18 +420,18 @@ async function init() {
   const toInstallDevStr = toInstallDev.join(" ");
   const toGitStr = toGit.join(" ");
 
-  // console.log({ toInstallStr });
-  // console.log({ toInstallDevStr });
-  // console.log({ toGitStr });
-
   const combinedInstallCommands = [
     toInstallStr,
     toInstallDevStr,
     toGitStr,
   ].filter((str) => str.length !== 0);
 
+  // console.log(installCommands);
+  // log({ toInstallStr });
+  // log({ toInstallDevStr });
+  // log({ toGitStr });
   // REVIEW: log or not?
-  console.log(combinedInstallCommands);
+  // log(combinedInstallCommands);
 
   if (combinedInstallCommands) {
     combinedInstallCommands.forEach((customCommand) => {
