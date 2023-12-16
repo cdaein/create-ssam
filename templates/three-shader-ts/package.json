@@ -8,7 +8,5 @@
     "dev": "vite",
     "build": "tsc --noemit && vite build",
     "preview": "vite preview"
-  },
-  "devDependencies": {},
-  "dependencies": {}
+  }
 }

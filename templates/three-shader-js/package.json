@@ -8,12 +8,5 @@
     "dev": "vite",
     "build": "tsc --noemit && vite build",
     "preview": "vite preview"
-  },
-  "devDependencies": {
-    "vite": "^4.4.7"
-  },
-  "dependencies": {
-    "ssam": "^0.2.0",
-    "three": "^0.149.0"
   }
 }
