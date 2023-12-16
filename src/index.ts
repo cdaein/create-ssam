@@ -137,7 +137,7 @@ const templates: Template[] = [
         installCommands: {
           git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
           dep: `ssam@latest ${oglPkg} --prefix TARGET_DIR`,
-          devDep: `${commonTSPkgs} @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+          devDep: `${commonTSPkgs} ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         },
       },
       {
@@ -146,7 +146,7 @@ const templates: Template[] = [
         color: green,
         installCommands: {
           dep: `ssam@latest ${oglPkg} --prefix TARGET_DIR`,
-          devDep: `${commonTSPkgs} @types/ogl@npm:ogl-types ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+          devDep: `${commonTSPkgs} ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         },
       },
     ],
