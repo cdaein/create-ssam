@@ -11,7 +11,7 @@ void main() {
   float aspect = resolution.x / resolution.y;
   p.x *= aspect;
 
-  float circ = circleSDF(p, vec2(0.0));
+  float circ = circleSDF(p + vec2(0.5));
 
   vec3 col = vec3(p, sin(time) * 0.5 + 0.5);
   gl_FragColor = vec4(vec3(circ), 1.0);

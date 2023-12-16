@@ -58,14 +58,15 @@ type ExtraPack = {
 const commonPkgs = `ssam`;
 // NOTE: for compatibility check, don't use @latest, but test updates from time to time before updating.
 //       users can always update package.json themselves.
-const commonTSPkgs = `typescript@5.1.6 vite@4.4.7`;
-const commonJSPkgs = `vite@4.4.7`;
+const commonTSPkgs = `typescript@5.3.3 vite@5.0.10`;
+const commonJSPkgs = `vite@5.0.10`;
 const ssamPluginPkgs = `vite-plugin-ssam-export vite-plugin-ssam-ffmpeg vite-plugin-ssam-git vite-plugin-ssam-timelapse`;
-const oglPkg = `ogl@0.0.110`;
-const viteGlslPkg = `vite-plugin-glsl@1.1.2`;
+const oglPkg = `ogl@1.0.3`;
+const viteGlslPkg = `vite-plugin-glsl@1.2.1`;
 const threePkg = `three`;
 
 // NOTE: prompts doesn't return "title" in response. it returns "value"
+// TODO: add descripton on what it does - these are all optional, but user may think it's required to install.
 const extraPacks: ExtraPack[] = [
   {
     title: `Color`,
@@ -160,7 +161,7 @@ const templates: Template[] = [
         display: "Basic Cube TS",
         color: green,
         installCommands: {
-          // git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
+          git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
           dep: `ssam@latest ${threePkg} --prefix TARGET_DIR`,
           devDep: `${commonTSPkgs} @types/three ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         },
@@ -170,6 +171,7 @@ const templates: Template[] = [
         display: "Fullscreen Shader TS",
         color: blue,
         installCommands: {
+          git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
           dep: `ssam@latest ${threePkg} --prefix TARGET_DIR`,
           devDep: `${commonTSPkgs} @types/three ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         },
@@ -179,6 +181,7 @@ const templates: Template[] = [
         display: "Fullscreen Shader JS",
         color: yellow,
         installCommands: {
+          git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
           dep: `ssam@latest ${threePkg} --prefix TARGET_DIR`,
           devDep: `${commonJSPkgs} ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         },
