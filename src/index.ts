@@ -59,17 +59,17 @@ type ExtraPack = {
 };
 
 const commonPkgs = `ssam`;
-// NOTE: for compatibility check, don't use @latest, but test updates from time to time before updating.
+// NOTE: to prevent dependency error outside the control, don't use @latest, and lock the versions.
+//       test updated deps from time to time before updating create-ssam.
 //       users can always update package.json themselves.
 const commonTSPkgs = `typescript@5.3.3 vite@5.0.10`;
 const commonJSPkgs = `vite@5.0.10`;
 const ssamPluginPkgs = `vite-plugin-ssam-export vite-plugin-ssam-ffmpeg vite-plugin-ssam-git vite-plugin-ssam-timelapse`;
 const oglPkg = `ogl@1.0.3`;
 const viteGlslPkg = `vite-plugin-glsl@1.2.1`;
-const threePkg = `three`;
+const threePkg = `three@0.159.0`;
 
 // NOTE: prompts doesn't return "title" in response. it returns "value"
-// TODO: add descripton on what it does - these are all optional, but user may think it's required to install.
 const extraPacks: ExtraPack[] = [
   {
     title: `Color`,
@@ -83,9 +83,9 @@ const extraPacks: ExtraPack[] = [
     description: "Install @daeinc/math, @daeinc/geom and @daeinc/draw",
     value: { dep: `@daeinc/math @daeinc/geom @daeinc/draw` },
   },
-  // REVIEW: for now, Lygia is instaled via supported templates.
-  // otherwise, it tries to git clone twice (here and template)
-  // maybe, check if template uses lygia, auto-include?
+  // NOTE: Lygia extra install is disabled because
+  // Lygia is installed via supported templates AND here (twice).
+  // maybe, check if template uses lygia, and decide to include or not?
   // {
   //   title: `Lygia (GLSL)`,
   //   description: "Git clone Lygia shader library",
