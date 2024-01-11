@@ -62,8 +62,8 @@ const commonPkgs = `ssam`;
 // NOTE: to prevent dependency error outside the control, don't use @latest, and lock the versions.
 //       test updated deps from time to time before updating create-ssam.
 //       users can always update package.json themselves.
-const commonTSPkgs = `typescript@5.3.3 vite@5.0.10`;
-const commonJSPkgs = `vite@5.0.10`;
+const commonTSPkgs = `typescript@5.3.3 vite@5.0.10 prettier@3.1.1`;
+const commonJSPkgs = `vite@5.0.10 prettier@3.1.1`;
 const ssamPluginPkgs = `vite-plugin-ssam-export vite-plugin-ssam-ffmpeg vite-plugin-ssam-git vite-plugin-ssam-timelapse`;
 const oglPkg = `ogl@1.0.3`;
 const viteGlslPkg = `vite-plugin-glsl@1.2.1`;
@@ -214,6 +214,7 @@ const templates: Template[] = [
 
 const renameFiles: Record<string, string | undefined> = {
   _gitignore: ".gitignore",
+  _prettierrc: ".prettierrc",
 };
 
 const defaultTargetDir = "sketch-ssam";
@@ -368,6 +369,7 @@ async function init() {
   );
 
   // REVIEW: i don't overwrite
+  // TODO: use _commons directory files instead of ones in each template folder
   const write = (file: string, content?: string) => {
     const targetPath = path.join(root, renameFiles[file] ?? file);
     if (content) {
