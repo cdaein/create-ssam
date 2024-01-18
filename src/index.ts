@@ -58,16 +58,49 @@ type ExtraPack = {
   value: InstallCommandsGroup;
 };
 
+// lock versions for all deps/devDeps - it's much faster to install (use cache)
+// update packs values from time to time
+const packs = {
+  // ssam
+  ssam: "ssam@0.12.4",
+  "ssam-export": "vite-plugin-ssam-export@0.1.1",
+  "ssam-ffmpeg": "vite-plugin-ssam-ffmpeg@0.2.3",
+  "ssam-git": "vite-plugin-ssam-git@0.1.2",
+  "ssam-timelapse": "vite-plugin-ssam-timelapse@0.1.2",
+  // devDeps
+  typescript: "typescript@5.3.3",
+  vite: "vite@5.0.11",
+  prettier: "prettier@3.2.4",
+  // templates
+  ogl: "ogl@1.0.3",
+  glsl: "vite-plugin-glsl@1.2.1",
+  three: "three@0.160.0",
+  "types-three": "@types/three@0.160.0",
+  // extras
+  "thing-color": "@thi.ng/color@5.6.10",
+  "thing-color-palettes": "@thi.ng/color-palettes@1.2.23",
+  //
+  "daeinc-math": "@daeinc/math@0.6.0",
+  "daeinc-geom": "@daeinc/geom@0.11.0",
+  "daeinc-draw": "@daeinc/draw@0.4.0",
+  //
+  "thing-random": "@thi.ng/random@3.6.23",
+  "thing-arrays": "@thi.ng/arrays@2.7.13",
+  //
+  "daeinc-timeline": "@daeinc/timeline@0.5.2",
+  "daeinc-keyframes": "@daeinc/keyframes@0.1.0",
+  eases: "eases@1.0.8",
+  "types-eases": "@types/eases@1.0.4",
+};
+
 const commonPkgs = `ssam`;
 // NOTE: to prevent dependency error outside the control, don't use @latest, and lock the versions.
 //       test updated deps from time to time before updating create-ssam.
 //       users can always update package.json themselves.
-const commonTSPkgs = `typescript@5.3.3 vite@5.0.10 prettier@3.1.1`;
-const commonJSPkgs = `vite@5.0.10 prettier@3.1.1`;
-const ssamPluginPkgs = `vite-plugin-ssam-export vite-plugin-ssam-ffmpeg vite-plugin-ssam-git vite-plugin-ssam-timelapse`;
-const oglPkg = `ogl@1.0.3`;
-const viteGlslPkg = `vite-plugin-glsl@1.2.1`;
-const threePkg = `three@0.159.0`;
+const commonTSPkgs = `${packs["typescript"]} ${packs["vite"]} ${packs["prettier"]}`;
+const commonJSPkgs = `${packs["vite"]} ${packs["prettier"]}`;
+const ssamPluginPkgs = `${packs["ssam-export"]} ${packs["ssam-ffmpeg"]} ${packs["ssam-git"]} ${packs["ssam-timelapse"]}`;
+const viteGlslPkg = `${packs["glsl"]}`;
 
 // NOTE: prompts doesn't return "title" in response. it returns "value"
 const extraPacks: ExtraPack[] = [
@@ -75,13 +108,15 @@ const extraPacks: ExtraPack[] = [
     title: `Color`,
     description: "Install @thi.ng/color and @thi.ng/color-palettes",
     value: {
-      dep: `@thi.ng/color @thi.ng/color-palettes`,
+      dep: `${packs["thing-color"]} ${packs["thing-color-palettes"]}`,
     },
   },
   {
     title: `Daeinc Pack`,
     description: "Install @daeinc/math, @daeinc/geom and @daeinc/draw",
-    value: { dep: `@daeinc/math @daeinc/geom @daeinc/draw` },
+    value: {
+      dep: `${packs["daeinc-math"]} ${packs["daeinc-geom"]} ${packs["daeinc-draw"]}`,
+    },
   },
   // NOTE: Lygia extra install is disabled because
   // Lygia is installed via supported templates AND here (twice).
@@ -96,14 +131,14 @@ const extraPacks: ExtraPack[] = [
   {
     title: `Random`,
     description: "Install @thi.ng/random and @thi.ng/arrays",
-    value: { dep: `@thi.ng/random @thi.ng/arrays` },
+    value: { dep: `${packs["thing-random"]} ${packs["thing-arrays"]}` },
   },
   {
     title: `Animation`,
     description: "Install @daeinc/timeline, @daeinc/keyframes and eases",
     value: {
-      dep: `eases @daeinc/timeline @daeinc/keyframes`,
-      devDep: `@types/eases`,
+      dep: `${packs["eases"]} ${packs["daeinc-timeline"]} ${packs["daeinc-keyframes"]}`,
+      devDep: `${packs["types-eases"]}`,
     },
   },
 ];
@@ -122,7 +157,7 @@ const templates: Template[] = [
         description: "Create a vanilla sketch in TypeScript",
         color: blue,
         installCommands: {
-          dep: `ssam@latest --prefix TARGET_DIR`,
+          dep: `${packs["ssam"]} --prefix TARGET_DIR`,
           devDep: `${commonTSPkgs} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         },
       },
@@ -132,7 +167,7 @@ const templates: Template[] = [
         description: "Create a vanilla sketch in JavaScript.",
         color: yellow,
         installCommands: {
-          dep: `ssam@latest --prefix TARGET_DIR`,
+          dep: `${packs["ssam"]} --prefix TARGET_DIR`,
           devDep: `${commonJSPkgs} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         },
       },
@@ -152,7 +187,7 @@ const templates: Template[] = [
         color: blue,
         installCommands: {
           git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
-          dep: `ssam@latest ${oglPkg} --prefix TARGET_DIR`,
+          dep: `${packs["ssam"]} ${packs["ogl"]} --prefix TARGET_DIR`,
           devDep: `${commonTSPkgs} ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         },
       },
@@ -162,7 +197,7 @@ const templates: Template[] = [
         description: "A basic 3d cube scene in TypeScript",
         color: green,
         installCommands: {
-          dep: `ssam@latest ${oglPkg} --prefix TARGET_DIR`,
+          dep: `${packs["ssam"]} ${packs["ogl"]} --prefix TARGET_DIR`,
           devDep: `${commonTSPkgs} ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         },
       },
@@ -182,8 +217,8 @@ const templates: Template[] = [
         color: green,
         installCommands: {
           git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
-          dep: `ssam@latest ${threePkg} --prefix TARGET_DIR`,
-          devDep: `${commonTSPkgs} @types/three ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+          dep: `${packs["ssam"]} ${packs["three"]} --prefix TARGET_DIR`,
+          devDep: `${commonTSPkgs} ${packs["types-three"]} ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         },
       },
       {
@@ -193,8 +228,8 @@ const templates: Template[] = [
         color: blue,
         installCommands: {
           git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
-          dep: `ssam@latest ${threePkg} --prefix TARGET_DIR`,
-          devDep: `${commonTSPkgs} @types/three ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+          dep: `${packs["ssam"]} ${packs["three"]} --prefix TARGET_DIR`,
+          devDep: `${commonTSPkgs} ${packs["types-three"]} ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         },
       },
       {
@@ -204,7 +239,7 @@ const templates: Template[] = [
         color: yellow,
         installCommands: {
           git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
-          dep: `ssam@latest ${threePkg} --prefix TARGET_DIR`,
+          dep: `${packs["ssam"]} ${packs["three"]} --prefix TARGET_DIR`,
           devDep: `${commonJSPkgs} ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         },
       },
@@ -434,6 +469,7 @@ async function init() {
   // log({ toGitStr });
   // REVIEW: log or not?
   // log(combinedInstallCommands);
+  // TODO: log installed packages + version (format nicely)
 
   if (combinedInstallCommands) {
     combinedInstallCommands.forEach((customCommand) => {
