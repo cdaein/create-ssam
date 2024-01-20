@@ -22,6 +22,7 @@ import spawn from "cross-spawn";
 import prompts from "prompts";
 import kleur from "kleur";
 import figlet from "figlet";
+import packageJson from "../package.json";
 
 const log = console.log;
 
@@ -264,6 +265,7 @@ log(
   )}`,
 );
 
+log(green(`v${packageJson.version}`));
 log(bold().white(`Let's create a new sketch with ssam/쌈.\n`));
 
 async function init() {
