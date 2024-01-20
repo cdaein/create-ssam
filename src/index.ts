@@ -62,14 +62,14 @@ type ExtraPack = {
 // update packs values from time to time
 const packs = {
   // ssam
-  ssam: "ssam@0.12.4",
+  ssam: "ssam@0.13.0",
   "ssam-export": "vite-plugin-ssam-export@0.1.1",
   "ssam-ffmpeg": "vite-plugin-ssam-ffmpeg@0.2.3",
   "ssam-git": "vite-plugin-ssam-git@0.1.2",
   "ssam-timelapse": "vite-plugin-ssam-timelapse@0.1.2",
   // devDeps
   typescript: "typescript@5.3.3",
-  vite: "vite@5.0.11",
+  vite: "vite@5.0.12",
   prettier: "prettier@3.2.4",
   // templates
   ogl: "ogl@1.0.3",
