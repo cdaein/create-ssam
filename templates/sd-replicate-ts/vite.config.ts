@@ -18,7 +18,7 @@ export default defineConfig({
     ssamFfmpeg(),
     ssamReplicate({
       apiKey: envVars.REPLICATE_API_KEY,
-      testOutput: ["./output/test.png"],
+      // testOutput: [""],
     }),
     // ssamTimelapse(),
   ],
