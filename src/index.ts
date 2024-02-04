@@ -68,6 +68,7 @@ const packs = {
   "ssam-ffmpeg": "vite-plugin-ssam-ffmpeg@0.2.3",
   "ssam-git": "vite-plugin-ssam-git@0.1.2",
   "ssam-timelapse": "vite-plugin-ssam-timelapse@0.1.2",
+  "ssam-replicate": "vite-plugin-ssam-replicate@0.1.3",
   // devDeps
   typescript: "typescript@5.3.3",
   vite: "vite@5.0.12",
@@ -242,6 +243,24 @@ const templates: Template[] = [
           git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
           dep: `${packs["ssam"]} ${packs["three"]} --prefix TARGET_DIR`,
           devDep: `${commonJSPkgs} ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+        },
+      },
+    ],
+  },
+  {
+    name: "stable-diffusion",
+    display: "StableDiffusion",
+    description: "HTML5 Canvas + StableDiffusion",
+    color: white,
+    options: [
+      {
+        name: "sd-replicate-ts",
+        display: "Replicate API",
+        description: "Use Replicate API to generate images (API key required)",
+        color: blue,
+        installCommands: {
+          dep: `${packs["ssam"]} --prefix TARGET_DIR`,
+          devDep: `${commonTSPkgs} ${ssamPluginPkgs} ${packs["ssam-replicate"]} @types/node replicate@0.25.2 --prefix TARGET_DIR`,
         },
       },
     ],
