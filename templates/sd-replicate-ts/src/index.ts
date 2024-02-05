@@ -4,7 +4,8 @@ import { loadImage } from "./utils";
 import type { Prediction } from "replicate";
 
 const version =
-  "479633443fc6588e1e8ae764b79cdb3702d0c196e0cb2de6db39ce577383be77";
+  // lucataco/sdxl-lcm
+  "fbbd475b1084de80c47c35bfe4ae64b964294aa7e237e6537eed938cfd24903d";
 
 const sketch = ({
   wrap,
