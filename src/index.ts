@@ -284,7 +284,10 @@ log(
   )}`,
 );
 
+// FIX: when `npm crate ssam@latest`, the version shown is older than what's in package.json. why?
+// because `npm run patch` runs after build/publish?
 log(green(`v${packageJson.version}`));
+
 log(bold().white(`Let's create a new sketch with ssam/쌈.\n`));
 
 async function init() {
