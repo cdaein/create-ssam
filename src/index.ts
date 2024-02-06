@@ -26,8 +26,7 @@ import packageJson from "../package.json";
 
 const log = console.log;
 
-// const { red, green, yellow, blue, magenta, cyan, white } = kleur;
-const { red, green, yellow, blue, magenta, white, bold, bgGreen } = kleur;
+const { red, green, yellow, blue, magenta, white, bold } = kleur;
 
 const cwd = process.cwd();
 
@@ -63,12 +62,12 @@ type ExtraPack = {
 // update packs values from time to time
 const packs = {
   // ssam
-  ssam: "ssam@0.14.1",
+  ssam: "ssam@0.15.1",
   "ssam-export": "vite-plugin-ssam-export@0.1.1",
   "ssam-ffmpeg": "vite-plugin-ssam-ffmpeg@0.2.3",
   "ssam-git": "vite-plugin-ssam-git@0.1.2",
   "ssam-timelapse": "vite-plugin-ssam-timelapse@0.1.2",
-  "ssam-replicate": "vite-plugin-ssam-replicate@0.1.3",
+  "ssam-replicate": "vite-plugin-ssam-replicate@0.1.4",
   // devDeps
   typescript: "typescript@5.3.3",
   vite: "vite@5.0.12",
@@ -79,15 +78,15 @@ const packs = {
   three: "three@0.161.0",
   "types-three": "@types/three@0.161.2",
   // extras
-  "thing-color": "@thi.ng/color@5.6.10",
-  "thing-color-palettes": "@thi.ng/color-palettes@1.2.23",
+  "thing-color": "@thi.ng/color@5.6.16",
+  "thing-color-palettes": "@thi.ng/color-palettes@1.2.29",
   //
   "daeinc-math": "@daeinc/math@0.6.0",
   "daeinc-geom": "@daeinc/geom@0.11.0",
   "daeinc-draw": "@daeinc/draw@0.4.0",
   //
-  "thing-random": "@thi.ng/random@3.6.23",
-  "thing-arrays": "@thi.ng/arrays@2.7.13",
+  "thing-random": "@thi.ng/random@3.6.29",
+  "thing-arrays": "@thi.ng/arrays@2.7.19",
   //
   "daeinc-timeline": "@daeinc/timeline@0.5.2",
   "daeinc-keyframes": "@daeinc/keyframes@0.1.0",
