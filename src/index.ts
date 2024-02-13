@@ -247,14 +247,14 @@ const templates: Template[] = [
     ],
   },
   {
-    name: "stable-diffusion",
-    display: "StableDiffusion",
-    description: "HTML5 Canvas + StableDiffusion",
+    name: "experimental",
+    display: "Experimental",
+    description: "Templates that don't belong in other categories",
     color: white,
     options: [
       {
         name: "sd-replicate-ts",
-        display: "Replicate API",
+        display: "StableDiffusion via Replicate API",
         description: "Use Replicate API to generate images (API key required)",
         color: blue,
         installCommands: {
