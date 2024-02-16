@@ -1,12 +1,25 @@
 import { ssam } from "ssam";
-import type { Sketch, WebGLProps, SketchSettings } from "ssam";
-import { BoxGeometry, Mesh, PerspectiveCamera, Scene, ShaderMaterial, WebGLRenderer } from "three";
+import type { Sketch, SketchSettings } from "ssam";
+import {
+  BoxGeometry,
+  Mesh,
+  PerspectiveCamera,
+  Scene,
+  ShaderMaterial,
+  WebGLRenderer,
+} from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import Stats from "three/examples/jsm/libs/stats.module";
 import vert from "./shaders/vert.glsl";
 import frag from "./shaders/frag.glsl";
 
-const sketch = ({ wrap, canvas, width, height, pixelRatio }: WebGLProps) => {
+const sketch: Sketch<"webgl2"> = ({
+  wrap,
+  canvas,
+  width,
+  height,
+  pixelRatio,
+}) => {
   if (import.meta.hot) {
     import.meta.hot.dispose(() => wrap.dispose());
     import.meta.hot.accept(() => wrap.hotReload());
@@ -40,7 +53,7 @@ const sketch = ({ wrap, canvas, width, height, pixelRatio }: WebGLProps) => {
   const mesh = new Mesh(geometry, material);
   scene.add(mesh);
 
-  wrap.render = ({ playhead }: WebGLProps) => {
+  wrap.render = ({ playhead }) => {
     uniforms["time"].value = playhead * Math.PI * 2;
 
     controls.update();
@@ -48,7 +61,7 @@ const sketch = ({ wrap, canvas, width, height, pixelRatio }: WebGLProps) => {
     renderer.render(scene, camera);
   };
 
-  wrap.resize = ({ width, height }: WebGLProps) => {
+  wrap.resize = ({ width, height }) => {
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
     renderer.setSize(width, height);
@@ -74,4 +87,4 @@ const settings: SketchSettings = {
   },
 };
 
-ssam(sketch as Sketch, settings);
+ssam(sketch, settings);

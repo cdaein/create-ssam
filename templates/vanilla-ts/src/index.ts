@@ -1,13 +1,13 @@
 import { ssam } from "ssam";
-import type { Sketch, SketchProps, SketchSettings } from "ssam";
+import type { Sketch, SketchSettings } from "ssam";
 
-const sketch = ({ wrap, context: ctx }: SketchProps) => {
+const sketch: Sketch<"2d"> = ({ wrap, context: ctx }) => {
   if (import.meta.hot) {
     import.meta.hot.dispose(() => wrap.dispose());
     import.meta.hot.accept(() => wrap.hotReload());
   }
 
-  wrap.render = ({ width, height }: SketchProps) => {
+  wrap.render = ({ width, height }) => {
     ctx.fillStyle = `gray`;
     ctx.fillRect(0, 0, width, height);
   };
@@ -28,4 +28,4 @@ const settings: SketchSettings = {
   framesFormat: ["webm"],
 };
 
-ssam(sketch as Sketch, settings);
+ssam(sketch, settings);

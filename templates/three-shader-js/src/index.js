@@ -11,7 +11,7 @@ import {
 import baseVert from "./shaders/base.vert";
 import baseFrag from "./shaders/base.frag";
 
-/** @param {import('ssam').WebGLProps} */
+/** @param {import('ssam').WebGL2Props} */
 const sketch = ({ wrap, canvas, width, height, pixelRatio }) => {
   if (import.meta.hot) {
     import.meta.hot.dispose(() => wrap.dispose());

@@ -1,5 +1,5 @@
 import { ssam } from "ssam";
-import type { Sketch, SketchProps, SketchSettings } from "ssam";
+import type { Sketch, SketchSettings } from "ssam";
 import { loadImage } from "./utils";
 import type { Prediction } from "replicate";
 
@@ -7,14 +7,14 @@ const version =
   // lucataco/sdxl-lcm
   "fbbd475b1084de80c47c35bfe4ae64b964294aa7e237e6537eed938cfd24903d";
 
-const sketch = ({
+const sketch: Sketch<"2d"> = ({
   wrap,
   canvas,
   context: ctx,
   width,
   height,
   render,
-}: SketchProps) => {
+}) => {
   let output: HTMLImageElement[] = [];
 
   const getPrediction = async (prediction: Prediction) => {
@@ -56,7 +56,7 @@ const sketch = ({
 
   window.addEventListener("keydown", runModel);
 
-  wrap.render = ({ width, height }: SketchProps) => {
+  wrap.render = ({ width, height }) => {
     ctx.fillStyle = `brown`;
     ctx.fillRect(0, 0, width, height);
 
@@ -93,4 +93,4 @@ const settings: SketchSettings = {
   framesFormat: ["webm"],
 };
 
-ssam(sketch as Sketch, settings);
+ssam(sketch, settings);

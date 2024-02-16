@@ -1,5 +1,5 @@
 import { ssam } from "ssam";
-import type { Sketch, WebGLProps, SketchSettings } from "ssam";
+import type { Sketch, SketchSettings } from "ssam";
 import {
   Box,
   Camera,
@@ -14,7 +14,13 @@ import {
 import baseVert from "./shaders/base.vert";
 import baseFrag from "./shaders/base.frag";
 
-const sketch = ({ wrap, canvas, width, height, pixelRatio }: WebGLProps) => {
+const sketch: Sketch<"webgl2"> = ({
+  wrap,
+  canvas,
+  width,
+  height,
+  pixelRatio,
+}) => {
   if (import.meta.hot) {
     import.meta.hot.dispose(() => wrap.dispose());
     import.meta.hot.accept(() => wrap.hotReload());
@@ -50,14 +56,14 @@ const sketch = ({ wrap, canvas, width, height, pixelRatio }: WebGLProps) => {
   const mesh = new Mesh(gl, { geometry, program });
   mesh.setParent(scene);
 
-  wrap.render = ({ playhead }: WebGLProps) => {
+  wrap.render = ({ playhead }) => {
     program.uniforms.uTime.value = playhead * Math.PI * 2;
 
     controls.update();
     renderer.render({ scene, camera });
   };
 
-  wrap.resize = ({ width, height }: WebGLProps) => {
+  wrap.resize = ({ width, height }) => {
     renderer.setSize(width, height);
     camera.perspective({ aspect: width / height });
   };
@@ -81,4 +87,4 @@ const settings: SketchSettings = {
   },
 };
 
-ssam(sketch as Sketch, settings);
+ssam(sketch, settings);
