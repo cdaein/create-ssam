@@ -62,34 +62,34 @@ type ExtraPack = {
 // update packs values from time to time
 const packs = {
   // ssam
-  ssam: "ssam@0.18.2",
+  ssam: "ssam@0.18.5",
   "ssam-export": "vite-plugin-ssam-export@0.1.1",
   "ssam-ffmpeg": "vite-plugin-ssam-ffmpeg@0.2.3",
   "ssam-git": "vite-plugin-ssam-git@0.1.2",
-  "ssam-timelapse": "vite-plugin-ssam-timelapse@0.1.2",
   "ssam-replicate": "vite-plugin-ssam-replicate@0.1.4",
+  "ssam-timelapse": "vite-plugin-ssam-timelapse@0.1.2",
   // devDeps
-  typescript: "typescript@5.3.3",
-  vite: "vite@5.0.12",
-  prettier: "prettier@3.2.4",
+  typescript: "typescript@5.4.5",
+  vite: "vite@5.2.11",
+  prettier: "prettier@3.2.5",
   // templates
-  ogl: "ogl@1.0.4",
-  glsl: "vite-plugin-glsl@1.2.1",
-  three: "three@0.161.0",
-  "types-three": "@types/three@0.161.2",
+  ogl: "ogl@1.0.6",
+  glsl: "vite-plugin-glsl@1.3.0",
+  three: "three@0.164.1",
+  "types-three": "@types/three@0.164.0",
   // extras
-  "thing-color": "@thi.ng/color@5.6.16",
-  "thing-color-palettes": "@thi.ng/color-palettes@1.2.29",
+  "thing-color": "@thi.ng/color@5.6.44",
+  "thing-color-palettes": "@thi.ng/color-palettes@1.2.57",
   //
-  "daeinc-math": "@daeinc/math@0.6.0",
+  "daeinc-draw": "@daeinc/draw@0.5.0",
   "daeinc-geom": "@daeinc/geom@0.11.0",
-  "daeinc-draw": "@daeinc/draw@0.4.0",
-  //
-  "thing-random": "@thi.ng/random@3.6.29",
-  "thing-arrays": "@thi.ng/arrays@2.7.19",
-  //
-  "daeinc-timeline": "@daeinc/timeline@0.5.2",
   "daeinc-keyframes": "@daeinc/keyframes@0.1.0",
+  "daeinc-math": "@daeinc/math@0.7.0",
+  "daeinc-timeline": "@daeinc/timeline@0.5.2",
+  //
+  "thing-arrays": "@thi.ng/arrays@2.9.5",
+  "thing-random": "@thi.ng/random@3.7.5",
+  //
   eases: "eases@1.0.8",
   "types-eases": "@types/eases@1.0.4",
 };
