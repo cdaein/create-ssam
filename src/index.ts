@@ -296,8 +296,6 @@ log(
   )}`,
 );
 
-// FIX: when `npm crate ssam@latest`, the version shown is older than what's in package.json.
-// it is hard-coded in the published source file.
 log(green(`v${packageJson.version}`));
 
 log(bold().white(`Let's create a new sketch with ssam/쌈.\n`));
