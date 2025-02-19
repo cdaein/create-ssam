@@ -241,7 +241,6 @@ const templates: Template[] = [
         description: "A basic WebGPU scene with TSL",
         color: green,
         installCommands: {
-          git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
           dep: `${packs["ssam"]} ${packs["three"]} --prefix TARGET_DIR`,
           devDep: `${commonTSPkgs} ${packs["types-three"]} ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
         },
