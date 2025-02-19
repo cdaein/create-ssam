@@ -36,6 +36,10 @@ It will set up all the necessary files and Vite bundler so you can go straight i
 - on Desktop, `node ~/path/to/bin/create-ssam.js`
 - follow setup instructions.
 
+## Build Tips
+
+- `npm version <patch/minor/major` and then, `npm run build` so the correct packageJson version will be included in the dist.
+
 ## License
 
 MIT
