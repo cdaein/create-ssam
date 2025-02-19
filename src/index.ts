@@ -236,6 +236,17 @@ const templates: Template[] = [
         },
       },
       {
+        name: "three-webgpu-ts",
+        display: "WebGPU TS",
+        description: "A basic WebGPU scene with TSL",
+        color: green,
+        installCommands: {
+          git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
+          dep: `${packs["ssam"]} ${packs["three"]} --prefix TARGET_DIR`,
+          devDep: `${commonTSPkgs} ${packs["types-three"]} ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
+        },
+      },
+      {
         name: "three-shader-js",
         display: "Fullscreen Shader JS",
         description: "A shader sketch in JavaScript with Lygia",
@@ -285,8 +296,8 @@ log(
   )}`,
 );
 
-// FIX: when `npm crate ssam@latest`, the version shown is older than what's in package.json. why?
-// because `npm run patch` runs after build/publish?
+// FIX: when `npm crate ssam@latest`, the version shown is older than what's in package.json.
+// it is hard-coded in the published source file.
 log(green(`v${packageJson.version}`));
 
 log(bold().white(`Let's create a new sketch with ssam/쌈.\n`));

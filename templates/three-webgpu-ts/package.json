@@ -1,0 +1,12 @@
+{
+  "name": "template-three-shader-ts",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noemit && vite build",
+    "preview": "vite preview"
+  }
+}
