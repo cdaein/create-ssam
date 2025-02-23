@@ -74,7 +74,10 @@ async function init() {
           message: "Name your project:",
           initial: defaultTargetDir,
           onState: (state) => {
-            targetDir = formatTargetDir(state.value) || defaultTargetDir;
+            // replace any space with dash ("-") in the project name. otherwise, `npm --prefix` will get confused.
+            targetDir =
+              formatTargetDir(toValidPackageName(state.value)) ||
+              defaultTargetDir;
           },
         },
 
