@@ -25,6 +25,7 @@ It will set up all the necessary files and Vite bundler so you can go straight i
 - Three
   - Basic Cube TS
   - Fullscreen Shader TS with Lygia
+  - WebGPU TS
   - Fullscreen Shader JS with Lygia
 - StableDiffusion
   - Replicate API TS
