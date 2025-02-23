@@ -10,9 +10,7 @@
  *     - mouse/keyboard events
  *     - image loader
  *
- * TODO:
- * - `yarn add` test (also, dev packages)
- * - copy the common files (ex. _gitignore) from commons folder
+ * TODO: `yarn add` test (also, dev packages)
  */
 
 import fs from "fs";
@@ -191,19 +189,38 @@ async function init() {
   );
 
   // REVIEW: i don't overwrite
-  const write = (file: string, content?: string) => {
+  const write = (fromDir: string, file: string, content?: string) => {
     const targetPath = path.join(root, renameFiles[file] ?? file);
     if (content) {
       fs.writeFileSync(targetPath, content);
     } else {
-      copy(path.join(templateDir, file), targetPath);
+      copy(path.join(fromDir, file), targetPath);
     }
   };
 
   // copy files from template folder
-  const files = fs.readdirSync(templateDir);
-  for (const file of files.filter((f) => f !== "package.json")) {
-    write(file);
+  const templateFiles = fs.readdirSync(templateDir);
+  for (const file of templateFiles.filter((f) => f !== "package.json")) {
+    write(templateDir, file);
+  }
+
+  // copy common files that are same for all templates (ex. .gitignore)
+  // skip with warning if file already exists (but prompts already check for empty folder so it's fine for now)
+  const commonFilesDir = path.resolve(
+    fileURLToPath(import.meta.url), // `import.meta.url` returns `<project>/dist/index.js`
+    "../..",
+    `templates/_commons`,
+  );
+  const commonFiles = fs.readdirSync(commonFilesDir);
+  for (const file of commonFiles) {
+    if (file === `README.md`) {
+      // add project title to README.md
+      const title = getProjectName();
+      write(commonFilesDir, file, `# ${title}\n`);
+      console.log(title);
+    } else {
+      write(commonFilesDir, file);
+    }
   }
 
   const pkg = JSON.parse(
@@ -212,7 +229,7 @@ async function init() {
 
   pkg.name = packageName || getProjectName();
 
-  write("package.json", JSON.stringify(pkg, null, 2));
+  write(templateDir, "package.json", JSON.stringify(pkg, null, 2));
 
   // 1. get install commands from template option
   // 2. get install commnads from extra
