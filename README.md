@@ -39,7 +39,7 @@ It will set up all the necessary files and Vite bundler so you can go straight i
 
 ## Build Tips
 
-- `npm version <patch/minor/major` and then, `npm run build` so the correct packageJson version will be included in the dist.
+- `npm version <patch/minor/major>` and then, `npm run build` so the correct packageJson version will be included in the dist.
 
 ## License
 
