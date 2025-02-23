@@ -220,7 +220,6 @@ async function init() {
       // add project title to README.md
       const title = getProjectName();
       write(commonFilesDir, file, `# ${title}\n`);
-      console.log(title);
     } else {
       write(commonFilesDir, file);
     }
@@ -293,6 +292,9 @@ async function init() {
           // including Yarn 1.x and other custom npm clients.
           return "npm exec";
         });
+
+      console.log("");
+      console.log(green(fullCustomCommand));
 
       const [command, ...args] = fullCustomCommand.split(" ");
 
