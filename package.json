@@ -14,7 +14,8 @@
   "main": "index.js",
   "scripts": {
     "watch": "tsup --watch",
-    "build": "tsc --noemit && tsup ./src/index.ts"
+    "build": "tsc --noemit && tsup ./src/index.ts",
+    "prepublishOnly": "npm run build"
   },
   "author": "Daeinc",
   "license": "MIT",
