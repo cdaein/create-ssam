@@ -7,24 +7,24 @@ const { red, green, yellow, blue, magenta, white, bold } = kleur;
 // update packs values from time to time
 const packs = {
   // ssam
-  ssam: "ssam@0.21.1",
+  ssam: "ssam@0.22.0",
   "ssam-export": "vite-plugin-ssam-export@0.1.3",
   "ssam-ffmpeg": "vite-plugin-ssam-ffmpeg@0.2.4",
   "ssam-git": "vite-plugin-ssam-git@0.1.3",
   "ssam-replicate": "vite-plugin-ssam-replicate@0.1.5",
   "ssam-timelapse": "vite-plugin-ssam-timelapse@0.1.5",
   // devDeps
-  typescript: "typescript@5.8.3",
-  vite: "vite@7.0.0",
+  typescript: "typescript@5.9.3",
+  vite: "vite@7.1.12",
   prettier: "prettier@3.6.2",
   // templates
   ogl: "ogl@1.0.11",
-  glsl: "vite-plugin-glsl@1.5.1",
-  three: "three@0.177.0",
-  "types-three": "@types/three@0.177.0",
+  glsl: "vite-plugin-glsl@1.5.4",
+  three: "three@0.181.0",
+  "types-three": "@types/three@0.181.0",
   // extras
-  "thing-color": "@thi.ng/color@5.7.42",
-  "thing-color-palettes": "@thi.ng/color-palettes@1.5.6",
+  "thing-color": "@thi.ng/color@5.8.1",
+  "thing-color-palettes": "@thi.ng/color-palettes@1.5.32",
   // daeinc packs
   "daeinc-draw": "@daeinc/draw@0.6.1",
   "daeinc-geom": "@daeinc/geom@0.12.0",
@@ -33,8 +33,8 @@ const packs = {
   "daeinc-pd-timeline": "@daeinc/pd-timeline@0.1.1",
   "daeinc-timeline": "@daeinc/timeline@0.5.2",
   // random
-  "thing-arrays": "@thi.ng/arrays@2.13.1",
-  "thing-random": "@thi.ng/random@4.1.20",
+  "thing-arrays": "@thi.ng/arrays@2.13.16",
+  "thing-random": "@thi.ng/random@4.1.32",
   // animation
   eases: "eases@1.0.8",
   "types-eases": "@types/eases@1.0.4",
