@@ -1,4 +1,4 @@
-import type kleur from "kleur";
+import type { ColorKey } from "./utils";
 
 export type InstallCommandsGroup = {
   dep?: string;
@@ -10,7 +10,7 @@ export type TemplateOption = {
   name: string;
   display: string;
   description: string;
-  color: kleur.Color;
+  color: ColorKey;
   installCommands?: InstallCommandsGroup;
 };
 
@@ -18,7 +18,7 @@ export type Template = {
   name: string;
   display: string;
   description: string;
-  color: kleur.Color;
+  color: ColorKey;
   options: TemplateOption[];
 };
 

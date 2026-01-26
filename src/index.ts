@@ -18,15 +18,13 @@ import path from "path";
 import { fileURLToPath } from "url";
 import spawn from "cross-spawn";
 import prompts from "prompts";
-import kleur from "kleur";
 import figlet from "figlet";
 import packageJson from "../package.json";
 import { extraPacks, templates } from "./templates";
+import { color } from "./utils";
 import { Template } from "./types";
 
 const log = console.log;
-
-const { red, green, bold } = kleur;
 
 const cwd = process.cwd();
 
@@ -39,17 +37,18 @@ const defaultTargetDir = "sketch-ssam";
 let targetDir = defaultTargetDir;
 
 log(
-  `${green(
+  `${color(
     figlet.textSync("create ssam", {
       font: "Ogre",
       whitespaceBreak: true,
     }),
+    "green",
   )}`,
 );
 
-log(green(`v${packageJson.version}`));
+log(color(`v${packageJson.version}`, "green"));
 
-log(bold().white(`Let's create a new sketch with ssam/쌈.\n`));
+log(color(`Let's create a new sketch with ssam/쌈.\n`, "white"));
 
 async function init() {
   let response: prompts.Answers<
@@ -88,7 +87,7 @@ async function init() {
               return null;
             } else {
               throw new Error(
-                red("✖") +
+                color("✖", "red") +
                   ` Target directory "${targetDir}"` +
                   ` is not empty. Try again with another name or empty the directory first.`,
               );
@@ -101,7 +100,7 @@ async function init() {
         {
           type: (_, { overwrite }: { overwrite?: boolean }) => {
             if (overwrite === false) {
-              throw new Error(red("✖") + " Operation cancelled");
+              throw new Error(color("✖", "red") + " Operation cancelled");
             }
             return null;
           },
@@ -126,7 +125,7 @@ async function init() {
           initial: 0,
           choices: templates.map((template) => {
             return {
-              title: template.color(template.display),
+              title: color(option.display, option.color),
               description: template.description,
               value: template,
             };
@@ -142,7 +141,7 @@ async function init() {
           choices: (template: Template) =>
             template.options.map((option) => {
               return {
-                title: option.color(option.display),
+                title: color(option.display, option.color),
                 description: option.description,
                 value: option.name,
               };
@@ -161,7 +160,7 @@ async function init() {
       ],
       {
         onCancel: () => {
-          throw new Error(red("✖") + " cancelled");
+          throw new Error(color("✖", "red") + " cancelled");
         },
       },
     );
@@ -294,7 +293,7 @@ async function init() {
         });
 
       console.log("");
-      console.log(green(fullCustomCommand));
+      console.log(color(fullCustomCommand, "green"));
 
       const [command, ...args] = fullCustomCommand.split(" ");
 
@@ -309,7 +308,7 @@ async function init() {
   console.log(`\nDone. Now run:\n`);
 
   if (root !== cwd) {
-    console.log(`  ${bold(`cd`)} ${path.relative(cwd, root)}`);
+    console.log(`  ${color(`cd`, "bold")} ${path.relative(cwd, root)}`);
   }
   switch (pkgManager) {
     case "yarn":

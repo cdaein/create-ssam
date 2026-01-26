@@ -1,7 +1,4 @@
-import kleur from "kleur";
 import type { ExtraPack, Template } from "./types";
-
-const { red, green, yellow, blue, magenta, white, bold } = kleur;
 
 // lock versions for all deps/devDeps - it's much faster to install (use cache)
 // update packs values from time to time
@@ -55,13 +52,13 @@ export const templates: Template[] = [
     name: "vanilla",
     display: "Vanilla",
     description: "Set up without Canvas libraries. (or install yourself)",
-    color: yellow,
+    color: "yellow",
     options: [
       {
         name: "vanilla-ts",
         display: "TypeScript",
         description: "Create a vanilla sketch in TypeScript",
-        color: blue,
+        color: "blue",
         installCommands: {
           dep: `${packs["ssam"]} --prefix TARGET_DIR`,
           devDep: `${commonTSPkgs} ${ssamPluginPkgs} --prefix TARGET_DIR`,
@@ -71,7 +68,7 @@ export const templates: Template[] = [
         name: "vanilla",
         display: "JavaScript",
         description: "Create a vanilla sketch in JavaScript.",
-        color: yellow,
+        color: "yellow",
         installCommands: {
           dep: `${packs["ssam"]} --prefix TARGET_DIR`,
           devDep: `${commonJSPkgs} ${ssamPluginPkgs} --prefix TARGET_DIR`,
@@ -84,13 +81,13 @@ export const templates: Template[] = [
     name: "ogl",
     display: "OGL",
     description: "Set up with OGL WebGL library",
-    color: green,
+    color: "green",
     options: [
       {
         name: "ogl-shader-ts",
         display: "Fullscreen Shader TS",
         description: "A shader sketch in TypeScript with Lygia",
-        color: blue,
+        color: "blue",
         installCommands: {
           git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
           dep: `${packs["ssam"]} ${packs["ogl"]} --prefix TARGET_DIR`,
@@ -101,7 +98,7 @@ export const templates: Template[] = [
         name: "ogl-cube-ts",
         display: "Basic Cube Scene TS",
         description: "A basic 3d cube scene in TypeScript",
-        color: green,
+        color: "green",
         installCommands: {
           dep: `${packs["ssam"]} ${packs["ogl"]} --prefix TARGET_DIR`,
           devDep: `${commonTSPkgs} ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
@@ -114,13 +111,13 @@ export const templates: Template[] = [
     name: "three",
     display: "Three.js",
     description: "Set up with Three.js WebGL library",
-    color: magenta,
+    color: "magenta",
     options: [
       {
         name: "three-cube-ts",
         display: "Basic Cube TS",
         description: "A basic 3d cube scene in TypeScript with Lygia",
-        color: green,
+        color: "green",
         installCommands: {
           git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
           dep: `${packs["ssam"]} ${packs["three"]} --prefix TARGET_DIR`,
@@ -131,7 +128,7 @@ export const templates: Template[] = [
         name: "three-shader-ts",
         display: "Fullscreen Shader TS",
         description: "A shader sketch in TypeScript with Lygia",
-        color: blue,
+        color: "blue",
         installCommands: {
           git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
           dep: `${packs["ssam"]} ${packs["three"]} --prefix TARGET_DIR`,
@@ -142,7 +139,7 @@ export const templates: Template[] = [
         name: "three-webgpu-ts",
         display: "WebGPU TS",
         description: "A basic WebGPU scene with TSL",
-        color: green,
+        color: "green",
         installCommands: {
           dep: `${packs["ssam"]} ${packs["three"]} --prefix TARGET_DIR`,
           devDep: `${commonTSPkgs} ${packs["types-three"]} ${viteGlslPkg} ${ssamPluginPkgs} --prefix TARGET_DIR`,
@@ -152,7 +149,7 @@ export const templates: Template[] = [
         name: "three-shader-js",
         display: "Fullscreen Shader JS",
         description: "A shader sketch in JavaScript with Lygia",
-        color: yellow,
+        color: "yellow",
         installCommands: {
           git: `git clone --no-tags --depth 1 --single-branch --branch=main https://github.com/patriciogonzalezvivo/lygia.git`,
           dep: `${packs["ssam"]} ${packs["three"]} --prefix TARGET_DIR`,
@@ -165,13 +162,13 @@ export const templates: Template[] = [
     name: "experimental",
     display: "Experimental",
     description: "Templates that don't belong in other categories",
-    color: white,
+    color: "white",
     options: [
       {
         name: "sd-replicate-ts",
         display: "StableDiffusion via Replicate API",
         description: "Use Replicate API to generate images (API key required)",
-        color: blue,
+        color: "blue",
         installCommands: {
           dep: `${packs["ssam"]} --prefix TARGET_DIR`,
           devDep: `${commonTSPkgs} ${ssamPluginPkgs} ${packs["ssam-replicate"]} @types/node replicate@0.25.2 --prefix TARGET_DIR`,
