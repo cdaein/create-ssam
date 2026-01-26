@@ -8,23 +8,23 @@ const { red, green, yellow, blue, magenta, white, bold } = kleur;
 const packs = {
   // ssam
   ssam: "ssam@0.22.0",
-  "ssam-export": "vite-plugin-ssam-export@0.1.3",
-  "ssam-ffmpeg": "vite-plugin-ssam-ffmpeg@0.2.4",
-  "ssam-git": "vite-plugin-ssam-git@0.1.3",
-  "ssam-replicate": "vite-plugin-ssam-replicate@0.1.5",
-  "ssam-timelapse": "vite-plugin-ssam-timelapse@0.1.5",
+  "ssam-export": "vite-plugin-ssam-export@0.1.4",
+  "ssam-ffmpeg": "vite-plugin-ssam-ffmpeg@0.2.5",
+  "ssam-git": "vite-plugin-ssam-git@0.1.4",
+  "ssam-replicate": "vite-plugin-ssam-replicate@0.1.6",
+  "ssam-timelapse": "vite-plugin-ssam-timelapse@0.1.6",
   // devDeps
   typescript: "typescript@5.9.3",
-  vite: "vite@7.1.12",
+  vite: "vite@7.3.1",
   prettier: "prettier@3.6.2",
   // templates
   ogl: "ogl@1.0.11",
-  glsl: "vite-plugin-glsl@1.5.4",
-  three: "three@0.181.0",
-  "types-three": "@types/three@0.181.0",
+  glsl: "vite-plugin-glsl@1.5.5",
+  three: "three@0.182.0",
+  "types-three": "@types/three@0.182.0",
   // extras
-  "thing-color": "@thi.ng/color@5.8.1",
-  "thing-color-palettes": "@thi.ng/color-palettes@1.5.32",
+  "thing-color": "@thi.ng/color@5.8.9",
+  "thing-color-palettes": "@thi.ng/color-palettes@1.5.40",
   // daeinc packs
   "daeinc-draw": "@daeinc/draw@0.6.1",
   "daeinc-geom": "@daeinc/geom@0.12.0",
@@ -33,8 +33,8 @@ const packs = {
   "daeinc-pd-timeline": "@daeinc/pd-timeline@0.1.1",
   "daeinc-timeline": "@daeinc/timeline@0.5.2",
   // random
-  "thing-arrays": "@thi.ng/arrays@2.13.16",
-  "thing-random": "@thi.ng/random@4.1.32",
+  "thing-arrays": "@thi.ng/arrays@2.14.6",
+  "thing-random": "@thi.ng/random@4.1.38",
   // animation
   eases: "eases@1.0.8",
   "types-eases": "@types/eases@1.0.4",
