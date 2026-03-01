@@ -125,7 +125,7 @@ async function init() {
           initial: 0,
           choices: templates.map((template) => {
             return {
-              title: color(option.display, option.color),
+              title: color(template.display, template.color),
               description: template.description,
               value: template,
             };
