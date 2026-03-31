@@ -21,7 +21,6 @@
   "license": "MIT",
   "dependencies": {
     "cross-spawn": "^7.0.6",
-    "figlet": "^1.10.0",
     "prompts": "^2.4.2"
   },
   "devDependencies": {
@@ -37,7 +36,6 @@
     "@thi.ng/random": "^4.1.38",
     "@types/cross-spawn": "^6.0.6",
     "@types/eases": "^1.0.4",
-    "@types/figlet": "^1.7.0",
     "@types/ogl": "npm:ogl-types@^0.0.102",
     "@types/prompts": "^2.4.9",
     "@types/three": "^0.182.0",

@@ -18,7 +18,6 @@ import path from "path";
 import { fileURLToPath } from "url";
 import spawn from "cross-spawn";
 import prompts from "prompts";
-import figlet from "figlet";
 import packageJson from "../package.json";
 import { extraPacks, templates } from "./templates";
 import { color } from "./utils";
@@ -37,16 +36,16 @@ const defaultTargetDir = "sketch-ssam";
 let targetDir = defaultTargetDir;
 
 log(
-  `${color(
-    figlet.textSync("create ssam", {
-      font: "Ogre",
-      whitespaceBreak: true,
-    }),
+  color(
+    `                       
+  __ _ _ ___  __ _ | |_ ___  ___ ___ __ _ _ ___
+ / _| '_/ -_)/ _' ||  _/ -_)(_-<(_-</ _' | '   |
+ |__|_| |___|_,___||__|___|/___//__/|__,_|_|_|_|`,
     "green",
-  )}`,
+  ),
 );
 
-log(color(`v${packageJson.version}`, "green"));
+log(color(` v${packageJson.version}`, "green"));
 
 log(color(`Let's create a new sketch with ssam/쌈.\n`, "white"));
 
