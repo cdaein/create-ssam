@@ -16,7 +16,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import spawn from "cross-spawn";
+import { spawnSync } from "node:child_process";
 import prompts from "prompts";
 import packageJson from "../package.json";
 import { extraPacks, templates } from "./templates";
@@ -294,11 +294,10 @@ async function init() {
       console.log("");
       console.log(color(fullCustomCommand, "green"));
 
-      const [command, ...args] = fullCustomCommand.split(" ");
-
-      const { status } = spawn.sync(command, args, {
+      const { status } = spawnSync(fullCustomCommand, {
+        shell: true,
         stdio: "inherit",
-        cwd: command.startsWith(`git`) ? targetDir : `.`,
+        cwd: fullCustomCommand.startsWith(`git`) ? targetDir : `.`,
       });
       // process.exit(status ?? 0);
     });
