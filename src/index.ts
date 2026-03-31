@@ -275,7 +275,11 @@ async function init() {
       const fullCustomCommand = customCommand
         .replace("TARGET_DIR", targetDir)
         .replace(/^npm create/, `${pkgManager} create`)
-        .replace(/^npm install/, `${pkgManager} install`)
+        .replace(/^npm install/, () =>
+          pkgManager === "yarn" && !isYarn1
+            ? `${pkgManager} install`
+            : `${pkgManager} install --ignore-scripts`,
+        )
         // Only Yarn 1.x doesn't support `@version` in the `create` command
         .replace("@latest", () => (isYarn1 ? "" : "@latest"))
         .replace(/^npm exec/, () => {
